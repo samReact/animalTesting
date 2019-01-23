@@ -2,9 +2,9 @@
 
 import { Platform } from 'react-native';
 
-import variable from './../variables/platform';
+import variable from '../variables/platform';
 
-export default (variables /*: * */ = variable) => {
+export default (variables /* : * */ = variable) => {
   const titleTheme = {
     fontSize: variables.titleFontSize,
     fontFamily: variables.titleFontfamily,

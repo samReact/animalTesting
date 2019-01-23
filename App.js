@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { Permissions } from 'expo';
-import ScannerPage from './components/ScannerPage';
+import { StyleProvider } from 'native-base';
+import Home from './components/Home';
+import getTheme from './native-base-theme/components';
+import commonColor from './native-base-theme/variables/commonColor';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,9 +35,9 @@ export default class App extends React.Component {
   render() {
     const { hasCameraPermission } = this.state;
     return (
-      <View style={styles.container}>
-        {hasCameraPermission && <ScannerPage />}
-      </View>
+      <StyleProvider style={getTheme(commonColor)}>
+        <View style={styles.container}>{hasCameraPermission && <Home />}</View>
+      </StyleProvider>
     );
   }
 }

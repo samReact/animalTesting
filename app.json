@@ -9,7 +9,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/Logo_animal_Testing.png",
+      "image": "./assets/Logo_Animal_Testing.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,10 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Le bon fonctionnement de l'application Animal Testing nécessite d'avoir un accès à votre appareil photo pour scanner les codes-barres des produits cosmétiques. Vous pouvez modifier cet autorisation dans les paramètres du téléphone, à la rubrique Applications."
+      }
     }
   }
 }

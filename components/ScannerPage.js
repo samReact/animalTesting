@@ -30,10 +30,29 @@ export default class ScannerPage extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         {hasCameraPermission ? (
-          <BarCodeScanner
-            onBarCodeScanned={this.handleBarCodeScanned}
-            style={StyleSheet.absoluteFill}
-          />
+          <View style={{ flex: 1 }}>
+            <View
+              style={{
+                zIndex: 100,
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  width: '80%',
+                  height: '50%',
+                  borderColor: 'green',
+                  borderWidth: 5,
+                }}
+              />
+            </View>
+            <BarCodeScanner
+              onBarCodeScanned={this.handleBarCodeScanned}
+              style={StyleSheet.absoluteFill}
+            />
+          </View>
         ) : (
           <View
             style={{

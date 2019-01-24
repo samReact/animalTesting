@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { Permissions, Font } from 'expo';
+import { NativeRouter } from 'react-router-native';
 import { StyleProvider } from 'native-base';
 import Home from './components/Home';
 import getTheme from './native-base-theme/components';
@@ -43,7 +44,11 @@ export default class App extends React.Component {
     const { hasCameraPermission } = this.state;
     return (
       <StyleProvider style={getTheme(commonColor)}>
-        <View style={styles.container}>{hasCameraPermission && <Home />}</View>
+        <NativeRouter>
+          <View style={styles.container}>
+            {hasCameraPermission && <Home />}
+          </View>
+        </NativeRouter>
       </StyleProvider>
     );
   }

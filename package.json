@@ -34,6 +34,7 @@
     "lint-staged": "^8.1.0",
     "native-base": "^2.10.0",
     "prettier": "^1.16.1",
+    "prop-types": "^15.6.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-router-native": "^4.3.0"

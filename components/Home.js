@@ -6,46 +6,43 @@ import {
   Left,
   Body,
   Right,
-  Button,
-  Icon,
   Title,
-  Footer,
-  FooterTab,
-  Text,
+  Content,
 } from 'native-base';
+import { Switch, Route } from 'react-router-native';
 import ScannerPage from './ScannerPage';
+import HomePage from './HomePage';
+import * as routes from '../constant/routes';
+import FooterPage from './FooterPage';
 
 const logoWhite = require('../assets/Logo_Animal_Testing_White.png');
 
-const Home = () => (
-  <Container>
-    <Header>
-      <Left>
-        <Image style={{ width: 40, height: 40 }} source={logoWhite} />
-      </Left>
-      <Body>
-        <Title>Animal Testing</Title>
-      </Body>
-      <Right />
-    </Header>
-    <ScannerPage />
-    <Footer>
-      <FooterTab>
-        <Button vertical>
-          <Icon name="home" style={{ color: '#fff' }} />
-          <Text>Accueil</Text>
-        </Button>
-        <Button vertical>
-          <Icon name="barcode" style={{ color: '#fff' }} />
-          <Text>Scanner</Text>
-        </Button>
-        <Button vertical>
-          <Icon name="heart" style={{ color: '#fff' }} />
-          <Text>Suivez nous</Text>
-        </Button>
-      </FooterTab>
-    </Footer>
-  </Container>
-);
+export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-export default Home;
+  render() {
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Image style={{ width: 40, height: 40 }} source={logoWhite} />
+          </Left>
+          <Body>
+            <Title>Animal Testing</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content contentContainerStyle={{ flex: 1 }}>
+          <Switch>
+            <Route path={routes.HOME} component={HomePage} />
+            <Route path={routes.SCANNER} component={ScannerPage} />
+          </Switch>
+        </Content>
+        <FooterPage />
+      </Container>
+    );
+  }
+}

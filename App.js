@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
-import { Permissions } from 'expo';
+import { Permissions, Font } from 'expo';
 import { StyleProvider } from 'native-base';
 import Home from './components/Home';
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
+
+const Roboto = require('native-base/Fonts/Roboto.ttf');
+const RobotoMedium = require('native-base/Fonts/Roboto_medium.ttf');
 
 const styles = StyleSheet.create({
   container: {
@@ -19,9 +22,9 @@ export default class App extends React.Component {
   }
 
   async componentDidMount() {
-    await Expo.Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+    await Font.loadAsync({
+      Roboto,
+      Roboto_medium: RobotoMedium,
     });
     this.askPermissions();
   }

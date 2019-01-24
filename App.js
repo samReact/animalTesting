@@ -17,14 +17,15 @@ export default class App extends React.Component {
     super(props);
     this.state = { hasCameraPermission: false };
   }
+
   async componentDidMount() {
     await Expo.Font.loadAsync({
-      'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
     });
     this.askPermissions();
   }
-  
+
   askPermissions = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     if (status === 'granted') {
@@ -34,12 +35,12 @@ export default class App extends React.Component {
       Alert.alert('permission refusée');
     }
   };
-  
+
   render() {
     const { hasCameraPermission } = this.state;
     return (
       <StyleProvider style={getTheme(commonColor)}>
-        <View style={styles.container}>{hasCameraPermission && <Home/>}</View>
+        <View style={styles.container}>{hasCameraPermission && <Home />}</View>
       </StyleProvider>
     );
   }

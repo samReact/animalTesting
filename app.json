@@ -4,10 +4,13 @@
     "slug": "animalTesting",
     "privacy": "public",
     "sdkVersion": "32.0.0",
-    "platforms": ["ios", "android"],
+    "icon": "./assets/playstore-icon.png",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/Logo_Animal_Testing.png",
       "resizeMode": "contain",
@@ -16,12 +19,19 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
+      "icon": "./assets/ItunesArtwork@2x.png",
       "supportsTablet": false,
       "infoPlist": {
         "NSCameraUsageDescription": "Le bon fonctionnement de l'application Animal Testing nécessite d'avoir un accès à votre appareil photo pour scanner les codes-barres des produits cosmétiques. Vous pouvez modifier cet autorisation dans les paramètres du téléphone, à la rubrique Applications."
       }
-    }
+    },
+    "android": {
+      "icon": "./assets/playstore-icon.png"
+    },
+    "description": "Animal Testing App project."
   }
 }

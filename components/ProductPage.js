@@ -14,7 +14,6 @@ class ProductPage extends React.Component {
 
   render() {
     const { dataItem, history } = this.props;
-    const { image_url } = dataItem[0];
     const {
       image_url,
       brands,
@@ -98,9 +97,9 @@ class ProductPage extends React.Component {
             >
               <Text style={{ fontSize: 15 }}>{quantity}</Text>
               <Text style={{ fontSize: 15 }}>{categories}</Text>
-              <Text
-                style={{ fontSize: 15 }}
-              >{`mis à jour le ${update_date}`}</Text>
+              <Text style={{ fontSize: 15 }}>
+                {`mis à jour le ${update_date}`}
+              </Text>
             </Row>
           </Col>
         </Row>

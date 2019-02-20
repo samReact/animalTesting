@@ -14,6 +14,7 @@ import ScannerPage from './ScannerPage';
 import HomePage from './HomePage';
 import * as routes from '../constant/routes';
 import FooterPage from './FooterPage';
+import FollowUs from '../components/FollowUs'
 
 const logoWhite = require('../assets/Logo_Animal_Testing_White.png');
 
@@ -37,8 +38,9 @@ export default class Home extends React.Component {
         </Header>
         <Content contentContainerStyle={{ flex: 1 }}>
           <Switch>
+            <Route exact path={routes.SCANNER} component={ScannerPage} />
             <Route path={routes.HOME} component={HomePage} />
-            <Route path={routes.SCANNER} component={ScannerPage} />
+            <Route exact path={routes.FOLLOWUS} component={FollowUs} />
           </Switch>
         </Content>
         <FooterPage />

@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Alert } from 'react-native';
+import { Spinner } from 'native-base';
 import { BarCodeScanner, Permissions } from 'expo';
+import axios from 'axios';
 
 export default class ScannerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hasCameraPermission: false,
+      loading: false,
     };
   }
 
@@ -19,13 +22,21 @@ export default class ScannerPage extends React.Component {
   }
 
   handleBarCodeScanned = ({ type, data }) => {
-    Alert.alert(
-      `Le code barre avec un type: ${type} et donnée ${data} à été scanné !`
-    );
+    this.setState({ loading: true });
+    axios
+      .get('https://api.myjson.com/bins/bc3v0?pretty=1')
+      .then(res => {
+        this.setState({ loading: false });
+        return console.log(res.data);
+      })
+      .catch(err => {
+        this.setState({ loading: false });
+        return console.log(err);
+      });
   };
 
   render() {
-    const { hasCameraPermission } = this.state;
+    const { hasCameraPermission, loading } = this.state;
 
     return (
       <View style={{ flex: 1 }}>

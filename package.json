@@ -12,6 +12,17 @@
       "pre-commit": "lint-staged"
     }
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
+    "preset": "jest-expo",
+    "transform": {
+      "\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!native-base|react-router-native|react-native|expo|@expo)"
+    ]
+  },
+  "pre-commit": "lint-staged && npm test",
   "lint-staged": {
     "*.js": [
       "eslint --fix",
@@ -20,31 +31,33 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^9.0.0",
+
+    "axios": "^0.18.0",
+    "jest": "^23.6.0",
+    "expo": "^32.0.6",
+    "native-base": "^2.10.0",
+    "prop-types": "^15.6.2",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-router-native": "^4.3.0"
+  },
+  "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "babel-preset-expo": "^5.0.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16.3": "^1.5.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",
     "eslint-plugin-import": "^2.15.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "expo": "^32.0.0",
     "husky": "^1.3.1",
     "jest-expo": "^32.0.0",
     "lint-staged": "^8.1.0",
-    "native-base": "^2.11.0",
     "prettier": "^1.16.1",
-    "prop-types": "^15.6.2",
-    "react": "16.5.0",
-    "react-dom": "^16.7.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-native-easy-grid": "^0.2.0",
-    "react-router-native": "^4.3.0"
-  },
-  "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "react-dom": "^16.7.0"
   },
   "private": true
 }

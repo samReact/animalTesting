@@ -1,7 +1,16 @@
 node_modules/**/*
+.idea
 .expo/*
 npm-debug.*
 *.jks
 *.p12
 *.key
 *.mobileprovision
+Supprimerait .idea/animalTesting.iml
+Supprimerait .idea/codeStyles/
+Supprimerait .idea/encodings.xml
+Supprimerait .idea/inspectionProfiles/
+Supprimerait .idea/misc.xml
+Supprimerait .idea/modules.xml
+Supprimerait .idea/vcs.xml
+Supprimerait .idea/workspace.xml

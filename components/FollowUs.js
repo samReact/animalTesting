@@ -46,7 +46,6 @@ const FollowUs = () => (
       }}
     >
       <View
-        onPress={() => Linking.openURL('https://facebook.com')}
         style={{
           width: 120,
           height: 120,
@@ -56,6 +55,7 @@ const FollowUs = () => (
         }}
       >
         <Icon
+          onPress={() => Linking.openURL('https://animaltesting.fr/')}
           name="ios-link"
           style={{
             fontSize: 40,
@@ -77,6 +77,7 @@ const FollowUs = () => (
         }}
       >
         <Icon
+          onPress={() => Linking.openURL('https://twitter.com/AnimalTestingFR')}
           name="logo-twitter"
           style={{
             fontSize: 40,
@@ -107,6 +108,9 @@ const FollowUs = () => (
         }}
       >
         <Icon
+          onPress={() =>
+            Linking.openURL('https://www.instagram.com/animaltestingfr/')
+          }
           name="logo-instagram"
           style={{
             fontSize: 40,
@@ -129,6 +133,9 @@ const FollowUs = () => (
         }}
       >
         <Icon
+          onPress={() =>
+            Linking.openURL('https://www.facebook.com/animaltestingfrance/')
+          }
           name="logo-facebook"
           style={{
             fontSize: 40,

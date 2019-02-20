@@ -2,6 +2,8 @@ import React from 'react';
 import { Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Button, Icon, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import Logo from '../assets/Logo_Animal_Testing.png';
+import AllProductsModal from './AllProductsModal';
 
 export default class ProductPage extends React.Component {
   constructor(props) {

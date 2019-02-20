@@ -3,9 +3,10 @@ import { Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Button, Icon, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Logo from '../assets/Logo_Animal_Testing.png';
+import AllProductsModal from './AllProductsModal';
 
 const ProductPage = () => (
-  <Grid style={{ backgroundColor: '#FEFEFE', paddingLeft: 8}}>
+  <Grid style={{ backgroundColor: '#FEFEFE', paddingLeft: 8 }}>
     <Row style={{ height: '10%' }}>
       <Col style={{ width: '20%', padding: 4 }}>
         <Button iconLeft white full>
@@ -40,7 +41,9 @@ const ProductPage = () => (
             }}
             alt="status_image_url"
           />
-          <Text style={{ fontWeight: 'bold', padding: 4 }}>testé sur les animaux</Text>
+          <Text style={{ fontWeight: 'bold', padding: 4 }}>
+            testé sur les animaux
+          </Text>
         </Row>
         <Row
           style={{
@@ -60,14 +63,14 @@ const ProductPage = () => (
     <Row style={{ height: '10%', padding: 4 }}>
       <Col style={{ flexWrap: 'wrap', flexDirection: 'row' }}>
         <Image
-          style={{ width: '20%', height: '90%'}}
+          style={{ width: '20%', height: '90%' }}
           source={{
             uri:
               'http://les3sources.com/wp-content/uploads/sites/119/2018/05/vegan-society-label-PNG-300x239-300x239.png',
           }}
         />
         <Image
-          style={{ width: '20%', resizeMode: 'cover'}}
+          style={{ width: '20%', resizeMode: 'cover' }}
           source={{
             uri:
               'https://banner2.kisspng.com/20180408/uuw/kisspng-cruelty-free-animal-testing-logo-organization-peop-exam-5acae23f0c19c0.1984684415232456310496.jpg',
@@ -85,29 +88,19 @@ const ProductPage = () => (
         <TouchableOpacity style={{ width: '20%', height: '10%' }}>
           <ImageBackground
             style={{ width: '100%', height: '100%' }}
-            source={ require('../assets/danger.png') }
+            source={require('../assets/danger.png')}
           />
         </TouchableOpacity>
       </Col>
     </Row>
     <Row style={{ height: '10%', backgroundColor: '#B7B7B7', width: '100%' }}>
-      <Button
-        full
-        style={{
-          backgroundColor: '#66C3AE',
-          borderRadius: 10,
-          margin: 4,
-          height: 'auto',
-        }}
-      >
-        <Text> Voir tous les produits crème main NON TESTÉS</Text>
-      </Button>
+      <AllProductsModal />
     </Row>
     <Row style={{ width: '100%', height: '10%' }}>
       <Col style={{ width: '20%', margin: 4 }}>
         <Image
-          style={{ width: '100%', marginRight: 4, height: '100%'}}
-          source={ require('../assets/Logo_Animal_Testing.png') }
+          style={{ width: '100%', marginRight: 4, height: '100%' }}
+          source={require('../assets/Logo_Animal_Testing.png')}
         />
       </Col>
       <Col style={{ margin: 4 }}>

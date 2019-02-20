@@ -14,7 +14,7 @@ import ScannerPage from './ScannerPage';
 import HomePage from './HomePage';
 import * as routes from '../constant/routes';
 import FooterPage from './FooterPage';
-import FollowUs from '../components/FollowUs'
+import FollowUs from './FollowUs';
 
 const logoWhite = require('../assets/Logo_Animal_Testing_White.png');
 

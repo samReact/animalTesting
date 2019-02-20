@@ -40,7 +40,7 @@ export default class Home extends React.Component {
           <Switch>
             <Route exact path={routes.SCANNER} component={ScannerPage} />
             <Route path={routes.HOME} component={HomePage} />
-            <Route exact path={routes.FOLLOWUS} component={FollowUs} />
+            <Route path={routes.SCANNER} component={FollowUs} />
           </Switch>
         </Content>
         <FooterPage />

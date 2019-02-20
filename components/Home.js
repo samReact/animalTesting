@@ -15,6 +15,7 @@ import HomePage from './HomePage';
 import * as routes from '../constant/routes';
 import FooterPage from './FooterPage';
 import FollowUs from './FollowUs';
+import AllProductsPage from './AllProductsPage';
 
 const logoWhite = require('../assets/Logo_Animal_Testing_White.png');
 
@@ -40,7 +41,8 @@ export default class Home extends React.Component {
           <Switch>
             <Route exact path={routes.SCANNER} component={ScannerPage} />
             <Route path={routes.HOME} component={HomePage} />
-            <Route path={routes.SCANNER} component={FollowUs} />
+            <Route path={routes.FOLLOW_US} component={FollowUs} />
+            <Route path={routes.ALL_PRODUCTS} component={AllProductsPage} />
           </Switch>
         </Content>
         <FooterPage />

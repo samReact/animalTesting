@@ -2,17 +2,18 @@ import React from 'react';
 import { Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Button, Icon, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import { withRouter } from 'react-router-native';
 import Logo from '../assets/Logo_Animal_Testing.png';
-import AllProductsModal from './AllProductsModal';
+import * as routes from '../constant/routes';
 
-export default class ProductPage extends React.Component {
+class ProductPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const { dataItem } = this.props;
+    const { dataItem, history } = this.props;
     const { image_url } = dataItem[0];
     return (
       <Grid style={{ backgroundColor: '#FEFEFE', paddingLeft: 8 }}>
@@ -117,6 +118,7 @@ export default class ProductPage extends React.Component {
               margin: 4,
               height: 'auto',
             }}
+            onPress={() => history.push(routes.ALL_PRODUCTS)}
           >
             <Text> Voir tous les produits crème main NON TESTÉS</Text>
           </Button>
@@ -162,3 +164,5 @@ export default class ProductPage extends React.Component {
     );
   }
 }
+
+export default withRouter(ProductPage);

@@ -15,7 +15,7 @@ const FooterPage = props => (
         <Icon name="barcode" style={{ color: '#fff' }} />
         <Text>Scanner</Text>
       </Button>
-      <Button vertical onPress={() => props.history.push(routes.FOLLOWUS)}>
+      <Button vertical onPress={() => props.history.push(routes.FOLLOW_US)}>
         <Icon name="heart" style={{ color: '#fff' }} />
         <Text>Suivez nous</Text>
       </Button>

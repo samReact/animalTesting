@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "husky": {
     "hooks": {
@@ -22,7 +23,7 @@
     ],
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
   },
-  "pre-commit": "lint-staged && npm test",
+  "pre-commit": "npm test && lint-staged",
   "lint-staged": {
     "*.js": [
       "eslint --fix",

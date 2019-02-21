@@ -23,7 +23,7 @@
     ],
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
   },
-  "pre-commit": "lint-staged && npm run test",
+  "pre-commit": "lint-staged && npm test",
   "lint-staged": {
     "*.js": [
       "eslint --fix",

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Permissions } from 'expo';
 import axios from 'axios';
 import Scanner from './Scanner';
 import PermissionDenied from './PermissionDenied';
-import ProductPage from './ProductPage';
 
 export default class ScannerPage extends React.Component {
   constructor(props) {
@@ -43,13 +42,8 @@ export default class ScannerPage extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         {hasCameraPermission ? (
-          product.data ? (
-            <ProductPage dataItem={product.data} />
-          ) : (
-            <Scanner scan={this.handleBarCodeScanned} />
-          )
+          <Scanner dataItem={product.data} scan={this.handleBarCodeScanned} />
         ) : (
-          // <ProductPage />
           <PermissionDenied />
         )}
       </View>

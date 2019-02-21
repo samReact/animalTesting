@@ -4,7 +4,6 @@ import { Text, View, Icon, Content, Segment, Button } from 'native-base';
 import { withRouter } from 'react-router-native';
 import axios from 'axios';
 
-const imageProduct = require('../assets/3517360014181.jpg');
 const redCircle = require('../assets/red_circle.png');
 const greenCircle = require('../assets/green_circle.png');
 
@@ -147,6 +146,19 @@ class AllProductsPage extends React.Component {
                         <Text style={{ paddingLeft: 10, color: '#707070' }}>
                           {item.status_text}
                         </Text>
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        {item.labels_at.map(label => (
+                          <Image
+                            source={{ uri: label }}
+                            style={{ height: 30, width: 30 }}
+                          />
+                        ))}
                       </View>
                     </View>
                   </View>

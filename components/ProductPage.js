@@ -145,11 +145,10 @@ class ProductPage extends React.Component {
         >
           <Button
             full
+            primary
             style={{
-              backgroundColor: '#66C3AE',
               borderRadius: 10,
               margin: 4,
-              height: 'auto',
             }}
             onPress={() => history.push(routes.ALL_PRODUCTS)}
           >

@@ -7,6 +7,6 @@ import App from './App';
 describe('App', () => {
   it('renders View', () => {
     const AppWrapper = shallow(<App />);
-    expect(AppWrapper.find(View)).toHaveLength(3);
+    expect(AppWrapper.find(View)).toHaveLength(4);
   });
 });

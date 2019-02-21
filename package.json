@@ -8,6 +8,11 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test"
+    }
+  },
   "jest": {
     "preset": "jest-expo",
     "transform": {
@@ -18,7 +23,6 @@
     ],
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
   },
-  "pre-commit": "lint-staged && npm test",
   "lint-staged": {
     "*.js": [
       "eslint --fix",

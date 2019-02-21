@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking } from 'react-native';
+import { Linking, TouchableOpacity } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 
@@ -11,141 +11,129 @@ const FollowUs = () => (
   >
     <View
       style={{
+        height: '10%',
         justifyContent: 'center',
       }}
     >
       <Text
         style={{
           fontSize: 20,
-          color: 'rgb(102, 195, 174)',
-          height: 40,
-          textAlignVertical: 'center',
-          margin: 8,
+          fontWeight: 'bold',
+          color: '#66C3AE',
+          marginLeft: 8,
         }}
       >
         SUIVEZ-NOUS
       </Text>
+    </View>
+    <View
+      style={{
+        height: '10%',
+        justifyContent: 'center',
+        backgroundColor: '#B7B7B7',
+      }}
+    >
       <Text
         style={{
-          backgroundColor: 'rgb(183, 183, 183)',
           fontWeight: 'bold',
           fontSize: 14,
-          height: 60,
-          textAlign: 'center',
-          textAlignVertical: 'center',
+          marginLeft: 8,
         }}
       >
         Rejoignez Animal Testing sur les réseaux sociaux !
       </Text>
     </View>
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',
-      }}
-    >
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          borderRadius: 120 / 2,
-          backgroundColor: '#66C3AE',
-          marginTop: 40,
-        }}
-      >
-        <Icon
+    <View style={{ flex: 1, justifyContent: 'space-around' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <TouchableOpacity
           onPress={() => Linking.openURL('https://animaltesting.fr/')}
-          name="ios-link"
           style={{
-            fontSize: 40,
-            textAlign: 'center',
+            backgroundColor: '#66C3AE',
+            borderRadius: 50,
+            height: 100,
+            width: 100,
             justifyContent: 'center',
-            color: 'white',
-            marginTop: 20,
+            alignItems: 'center',
           }}
-        />
-        <Text style={{ color: 'white', textAlign: 'center' }}>Site</Text>
-      </View>
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          borderRadius: 120 / 2,
-          backgroundColor: '#66C3AE',
-          marginTop: 40,
-        }}
-      >
-        <Icon
+        >
+          <Icon
+            name="ios-link"
+            style={{
+              fontSize: 50,
+              color: 'white',
+            }}
+          />
+          <Text style={{ color: 'white' }}>Site</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPress={() => Linking.openURL('https://twitter.com/AnimalTestingFR')}
-          name="logo-twitter"
           style={{
-            fontSize: 40,
-            textAlign: 'center',
-            textAlignVertical: 'center',
+            backgroundColor: '#66C3AE',
+            borderRadius: 50,
+            height: 100,
+            width: 100,
             justifyContent: 'center',
-            color: 'white',
-            marginTop: 20,
+            alignItems: 'center',
           }}
-        />
-        <Text style={{ color: 'white', textAlign: 'center' }}>Twitter</Text>
+        >
+          <Icon
+            name="logo-twitter"
+            style={{
+              fontSize: 50,
+              color: 'white',
+            }}
+          />
+          <Text style={{ color: 'white' }}>Twitter</Text>
+        </TouchableOpacity>
       </View>
-    </View>
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',
-        marginTop: 40,
-      }}
-    >
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          borderRadius: 120 / 2,
-          backgroundColor: '#66C3AE',
-        }}
-      >
-        <Icon
+
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <TouchableOpacity
           onPress={() =>
             Linking.openURL('https://www.instagram.com/animaltestingfr/')
           }
-          name="logo-instagram"
           style={{
-            fontSize: 40,
-            textAlign: 'center',
-            textAlignVertical: 'center',
+            backgroundColor: '#66C3AE',
+            borderRadius: 50,
+            height: 100,
+            width: 100,
             justifyContent: 'center',
-            color: 'white',
-            marginTop: 20,
+            alignItems: 'center',
           }}
-        />
-        <Text style={{ color: 'white', textAlign: 'center' }}>Instagram</Text>
-      </View>
+        >
+          <Icon
+            name="logo-instagram"
+            style={{
+              fontSize: 50,
+              color: 'white',
+            }}
+          />
+          <Text style={{ color: 'white' }}>instagram</Text>
+        </TouchableOpacity>
 
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          borderRadius: 120 / 2,
-          backgroundColor: '#66C3AE',
-        }}
-      >
-        <Icon
+        <TouchableOpacity
           onPress={() =>
             Linking.openURL('https://www.facebook.com/animaltestingfrance/')
           }
-          name="logo-facebook"
           style={{
-            fontSize: 40,
-            textAlign: 'center',
+            backgroundColor: '#66C3AE',
+            borderRadius: 50,
+            height: 100,
+            width: 100,
             justifyContent: 'center',
-            color: 'white',
-            marginTop: 20,
+            alignItems: 'center',
           }}
-        />
-        <Text style={{ color: 'white', textAlign: 'center' }}>Facebook</Text>
+        >
+          <Icon
+            name="logo-facebook"
+            style={{
+              fontSize: 50,
+              color: 'white',
+            }}
+          />
+          <Text style={{ color: 'white' }}>Facebook</Text>
+        </TouchableOpacity>
       </View>
     </View>
   </View>

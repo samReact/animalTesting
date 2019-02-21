@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Container, Header, Content } from 'native-base';
 import { Route } from 'react-router-native';
-import Home from '../components/Home';
+import Home from './Home';
 
 describe('Home', () => {
   it('it render a Container', () => {

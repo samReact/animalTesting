@@ -14,6 +14,7 @@
     }
   },
   "jest": {
+    "testEnvironment": "node",
     "preset": "jest-expo",
     "transform": {
       "\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
@@ -21,7 +22,9 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!native-base|react-router-native|react-native|expo|@expo)"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ]
   },
   "lint-staged": {
     "*.js": [
@@ -33,7 +36,6 @@
     "@expo/vector-icons": "^9.0.0",
     "axios": "^0.18.0",
     "expo": "^32.0.0",
-    "jest": "^23.6.0",
     "native-base": "^2.10.0",
     "prop-types": "^15.6.2",
     "react": "16.5.0",
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "jest": "^24.1.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "babel-preset-expo": "^5.0.0",
     "enzyme": "^3.8.0",

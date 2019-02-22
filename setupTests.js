@@ -7,4 +7,12 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+// jest.mock('expo', () => ({
+//   Permissions: {
+//     askAsync: jest.fn(),
+//   },
+// }));
+
+jest.mock('expo');
+
 Enzyme.configure({ adapter: new Adapter() });

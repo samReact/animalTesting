@@ -34,7 +34,6 @@ export default class App extends React.Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     if (status === 'granted') {
       this.setState({ hasCameraPermission: true });
-      Alert.alert('La permission a été accordé ');
     } else {
       Alert.alert('permission refusée');
     }

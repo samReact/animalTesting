@@ -3,14 +3,11 @@ import { shallow } from 'enzyme';
 import { View } from 'react-native';
 import { StyleProvider } from 'native-base';
 import { NativeRouter } from 'react-router-native';
-import expo, { Permissions } from 'expo';
+import { Permissions } from 'expo';
 import App from './App';
 import Home from './components/Home';
 
-// const askPermissions = jest.fn();
-
 describe('App', () => {
-  // jest.useFakeTimers();
   it('Has a StyleProvider container', () => {
     const AppWrapper = shallow(<App />);
     expect(AppWrapper.find(StyleProvider)).toHaveLength(1);
@@ -31,38 +28,30 @@ describe('App', () => {
       });
     });
     describe('after asking permission', () => {
-      describe('when permission is granted', () => {
-        Permissions.askAsync.mockResolvedValue({
-          // expires: 'never',
-          status: 'granted',
-        });
-
-        it('renders a Home component', done => {
+      describe('when permission is denied', () => {
+        it('renders no component', done => {
+          Permissions.askAsync.mockResolvedValue({
+            status: 'denied',
+          });
           const AppWrapper = shallow(<App />);
-          console.log(AppWrapper.state('hasCameraPermission'));
           setImmediate(() => {
-            console.log(AppWrapper.state('hasCameraPermission'));
+            expect(AppWrapper.find(Home)).toHaveLength(0);
+            done();
+          });
+        });
+      });
+      describe('when permission is granted', () => {
+        it('renders a Home component', done => {
+          Permissions.askAsync.mockResolvedValue({
+            status: 'granted',
+          });
+          const AppWrapper = shallow(<App />);
+          setImmediate(() => {
             expect(AppWrapper.find(Home)).toHaveLength(1);
             done();
           });
         });
       });
-      // describe('when permission is denied', () => {
-      //   Permissions.askAsync.mockResolvedValue({
-      //     // expires: 'never',
-      //     status: 'denied',
-      //   });
-
-      //   it('renders no component', done => {
-      //     const AppWrapper = shallow(<App />);
-      //     console.log(AppWrapper.state('hasCameraPermission'));
-      //     setImmediate(() => {
-      //       console.log(AppWrapper.state('hasCameraPermission'));
-      //       expect(AppWrapper.find(Home)).toHaveLength(0);
-      //       done();
-      //     });
-      //   });
-      // });
     });
   });
 });

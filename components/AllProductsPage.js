@@ -1,8 +1,16 @@
 import React from 'react';
-import { Image, FlatList, ScrollView, Modal, Alert } from 'react-native';
+import {
+  Image,
+  FlatList,
+  ScrollView,
+  Modal,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import { Text, View, Icon, Content, Segment, Button } from 'native-base';
 import { withRouter } from 'react-router-native';
 import axios from 'axios';
+import ProductPageBis from './ProductPageBis';
 
 const redCircle = require('../assets/red_circle.png');
 const greenCircle = require('../assets/green_circle.png');
@@ -148,60 +156,61 @@ class AllProductsPage extends React.Component {
                     />
                   )}
                   renderItem={({ item }) => (
-                    <View>
-                      <Text
-                        style={{
-                          fontWeight: 'bold',
-                          paddingTop: 10,
-                          paddingBottom: 10,
-                        }}
-                      >
-                        {item.product_name}
-                      </Text>
-                      <View style={{ flexDirection: 'row' }}>
-                        <Image
-                          source={{ uri: item.image_url }}
-                          style={{ width: 100, height: 130 }}
-                        />
-                        <View
-                          style={{
-                            paddingLeft: 10,
-                            justifyContent: 'space-between',
-                          }}
-                        >
-                          <Text style={{ color: '#707070' }}>
-                            {item.quantity}
-                          </Text>
+                    <ProductPageBis item={item} />
+                    // <TouchableOpacity onPress={() => console.log('coucou')}>
+                    //   <Text
+                    //     style={{
+                    //       fontWeight: 'bold',
+                    //       paddingTop: 10,
+                    //       paddingBottom: 10,
+                    //     }}
+                    //   >
+                    //     {item.product_name}
+                    //   </Text>
+                    //   <View style={{ flexDirection: 'row' }}>
+                    //     <Image
+                    //       source={{ uri: item.image_url }}
+                    //       style={{ width: 100, height: 130 }}
+                    //     />
+                    //     <View
+                    //       style={{
+                    //         paddingLeft: 10,
+                    //         justifyContent: 'space-between',
+                    //       }}
+                    //     >
+                    //       <Text style={{ color: '#707070' }}>
+                    //         {item.quantity}
+                    //       </Text>
 
-                          <Text style={{ color: '#707070' }}>
-                            Mise à jour le {item.update_date}
-                          </Text>
-                          <View style={{ flexDirection: 'row' }}>
-                            <Image
-                              source={{ uri: item.status_image_url }}
-                              style={{ height: 20, width: 20 }}
-                            />
-                            <Text style={{ paddingLeft: 10, color: '#707070' }}>
-                              {item.status_text}
-                            </Text>
-                          </View>
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            {item.labels_at.map((label, index) => (
-                              <Image
-                                key={index}
-                                source={{ uri: label }}
-                                style={{ height: 30, width: 30 }}
-                              />
-                            ))}
-                          </View>
-                        </View>
-                      </View>
-                    </View>
+                    //       <Text style={{ color: '#707070' }}>
+                    //         Mise à jour le {item.update_date}
+                    //       </Text>
+                    //       <View style={{ flexDirection: 'row' }}>
+                    //         <Image
+                    //           source={{ uri: item.status_image_url }}
+                    //           style={{ height: 20, width: 20 }}
+                    //         />
+                    //         <Text style={{ paddingLeft: 10, color: '#707070' }}>
+                    //           {item.status_text}
+                    //         </Text>
+                    //       </View>
+                    //       <View
+                    //         style={{
+                    //           flexDirection: 'row',
+                    //           justifyContent: 'space-between',
+                    //         }}
+                    //       >
+                    //         {item.labels_at.map((label, index) => (
+                    //           <Image
+                    //             key={index}
+                    //             source={{ uri: label }}
+                    //             style={{ height: 30, width: 30 }}
+                    //           />
+                    //         ))}
+                    //       </View>
+                    //     </View>
+                    //   </View>
+                    // </TouchableOpacity>
                   )}
                 />
               )}

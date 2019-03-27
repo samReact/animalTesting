@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, FlatList, ScrollView } from 'react-native';
+import { Image, FlatList, ScrollView, Modal, Alert } from 'react-native';
 import { Text, View, Icon, Content, Segment, Button } from 'native-base';
 import { withRouter } from 'react-router-native';
 import axios from 'axios';
@@ -14,15 +14,18 @@ class AllProductsPage extends React.Component {
       products: {},
       filteredProduct: {},
       loading: false,
-      testedProducts: true,
-      NonTestedProducts: false,
+      testedProducts: false,
+      NonTestedProducts: true,
+      modalVisible: false,
     };
   }
 
-  async componentDidMount() {
+  getProducts = async () => {
+    const { links } = this.props;
     await axios
-      .get('https://api.myjson.com/bins/ohsbw?pretty=1')
+      .get(`https://animal-testing.fr/${links}`)
       .then(res => {
+        console.log(res.data.data);
         this.setState({
           loading: false,
           products: res.data.data,
@@ -31,16 +34,20 @@ class AllProductsPage extends React.Component {
       })
       .catch(err => {
         this.setState({ loading: false });
-        return console.log(err);
+        return Alert.alert('Erreur', 'Produit non trouvé');
       });
-    this.handleTestedProducts();
-  }
+    const { products } = this.state;
+    if (products.length) {
+      this.handleNonTestedProducts();
+    }
+  };
 
   handleTestedProducts = () => {
     const { products } = this.state;
     const filteredProduct = products.filter(
-      product => product.status_text === 'Testé sur les animaux'
+      product => product.status_text !== 'Non testé sur les animaux'
     );
+    console.log(products);
     this.setState({
       filteredProduct,
       testedProducts: true,
@@ -61,113 +68,148 @@ class AllProductsPage extends React.Component {
     });
   };
 
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
   render() {
     const {
       products,
       testedProducts,
       NonTestedProducts,
       filteredProduct,
+      modalVisible,
     } = this.state;
+
     return (
-      <Content padder style={{ flex: 1 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Icon name="arrow-back" />
-          <View style={{ paddingLeft: 20 }}>
-            <Text style={{ fontWeight: 'bold', color: '#66C3AE' }}>
-              RESULTATS
-            </Text>
-            <Text>{filteredProduct.length} produit(s) trouvé(s)</Text>
-          </View>
-        </View>
-        <Segment style={{ marginTop: 10, marginBottom: 10 }}>
-          <Button
-            first
-            active={testedProducts}
-            onPress={() => this.handleTestedProducts()}
-          >
-            <Text>Produits testés</Text>
-          </Button>
-          <Button
-            last
-            active={NonTestedProducts}
-            onPress={() => this.handleNonTestedProducts()}
-          >
-            <Text>Produits non-testés</Text>
-          </Button>
-        </Segment>
-        <ScrollView>
-          {products.length && (
-            <FlatList
-              data={filteredProduct}
-              ItemSeparatorComponent={() => (
-                <View
-                  style={{
-                    marginTop: 10,
-                    borderWidth: 0.5,
-                    borderColor: '#909090',
-                  }}
-                />
-              )}
-              renderItem={({ item }) => (
-                <View>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      paddingTop: 10,
-                      paddingBottom: 10,
-                    }}
-                  >
-                    {item.product_name}
+      <Button
+        full
+        primary
+        style={{
+          borderRadius: 10,
+          margin: 4,
+        }}
+        onPress={() => this.setModalVisible(true)}
+      >
+        <Modal
+          animationType="slide"
+          onShow={() => this.getProducts()}
+          transparent={false}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}
+        >
+          <Content padder style={{ flex: 1 }}>
+            <View>
+              <Button
+                iconLeft
+                transparent
+                onPress={() => this.setModalVisible(false)}
+              >
+                <Icon name="arrow-back" />
+                <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
+                  <Text>RESULTATS</Text>
+                  <Text>
+                    {filteredProduct.length || 0} produit(s) trouvé(s)
                   </Text>
-                  <View style={{ flexDirection: 'row' }}>
-                    <Image
-                      source={{ url: item.image_url }}
-                      style={{ width: 100, height: 130 }}
-                    />
+                </View>
+              </Button>
+            </View>
+
+            <Segment style={{ marginTop: 10, marginBottom: 10 }}>
+              <Button
+                first
+                active={testedProducts}
+                onPress={() => this.handleTestedProducts()}
+              >
+                <Text>Produits testés</Text>
+              </Button>
+              <Button
+                last
+                active={NonTestedProducts}
+                onPress={() => this.handleNonTestedProducts()}
+              >
+                <Text>Produits non-testés</Text>
+              </Button>
+            </Segment>
+            <ScrollView>
+              {products.length && (
+                <FlatList
+                  keyExtractor={item => item.product_code}
+                  data={filteredProduct}
+                  ItemSeparatorComponent={() => (
                     <View
                       style={{
-                        paddingLeft: 10,
-                        justifyContent: 'space-between',
+                        marginTop: 10,
+                        borderWidth: 0.5,
+                        borderColor: '#909090',
                       }}
-                    >
-                      <Text style={{ color: '#707070' }}>{item.quantity}</Text>
-
-                      <Text style={{ color: '#707070' }}>
-                        Mise à jour le {item.update_date}
+                    />
+                  )}
+                  renderItem={({ item }) => (
+                    <View>
+                      <Text
+                        style={{
+                          fontWeight: 'bold',
+                          paddingTop: 10,
+                          paddingBottom: 10,
+                        }}
+                      >
+                        {item.product_name}
                       </Text>
                       <View style={{ flexDirection: 'row' }}>
                         <Image
-                          source={
-                            item.status_text === 'Testé sur les animaux'
-                              ? redCircle
-                              : greenCircle
-                          }
+                          source={{ uri: item.image_url }}
+                          style={{ width: 100, height: 130 }}
                         />
-                        <Text style={{ paddingLeft: 10, color: '#707070' }}>
-                          {item.status_text}
-                        </Text>
-                      </View>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                        }}
-                      >
-                        {item.labels_at.map(label => (
-                          <Image
-                            source={{ uri: label }}
-                            style={{ height: 30, width: 30 }}
-                          />
-                        ))}
+                        <View
+                          style={{
+                            paddingLeft: 10,
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <Text style={{ color: '#707070' }}>
+                            {item.quantity}
+                          </Text>
+
+                          <Text style={{ color: '#707070' }}>
+                            Mise à jour le {item.update_date}
+                          </Text>
+                          <View style={{ flexDirection: 'row' }}>
+                            <Image
+                              source={{ uri: item.status_image_url }}
+                              style={{ height: 20, width: 20 }}
+                            />
+                            <Text style={{ paddingLeft: 10, color: '#707070' }}>
+                              {item.status_text}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                            {item.labels_at.map((label, index) => (
+                              <Image
+                                key={index}
+                                source={{ uri: label }}
+                                style={{ height: 30, width: 30 }}
+                              />
+                            ))}
+                          </View>
+                        </View>
                       </View>
                     </View>
-                  </View>
-                </View>
+                  )}
+                />
               )}
-            />
-          )}
-        </ScrollView>
-      </Content>
+            </ScrollView>
+          </Content>
+        </Modal>
+        <Text> Voir tous les produits crème main NON TESTÉS</Text>
+      </Button>
     );
   }
 }

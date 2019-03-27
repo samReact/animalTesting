@@ -68,6 +68,14 @@ class AllProductsPage extends React.Component {
     });
   };
 
+  handleSort = () => {
+    const { filteredProduct } = this.state;
+    const sortedList = filteredProduct.sort((a, b) => a - b);
+    this.setState({
+      filteredProduct: sortedList,
+    });
+  };
+
   render() {
     const {
       products,
@@ -112,23 +120,43 @@ class AllProductsPage extends React.Component {
                 </View>
               </Button>
             </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <View style={{ marginLeft: -15 }}>
+                <Button icon transparent onPress={() => this.handleSort()}>
+                  <Icon name="sort-by-alpha" type="MaterialIcons" />
+                </Button>
+              </View>
 
-            <Segment style={{ marginTop: 10, marginBottom: 10 }}>
-              <Button
-                first
-                active={testedProducts}
-                onPress={() => this.handleTestedProducts()}
+              <Segment
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                  justifyContent: 'center',
+                  backgroundColor: '#fff',
+                }}
               >
-                <Text>Produits testés</Text>
-              </Button>
-              <Button
-                last
-                active={NonTestedProducts}
-                onPress={() => this.handleNonTestedProducts()}
-              >
-                <Text>Produits non-testés</Text>
-              </Button>
-            </Segment>
+                <Button
+                  first
+                  active={testedProducts}
+                  onPress={() => this.handleTestedProducts()}
+                >
+                  <Text>Produits testés</Text>
+                </Button>
+                <Button
+                  last
+                  active={NonTestedProducts}
+                  onPress={() => this.handleNonTestedProducts()}
+                >
+                  <Text>Produits non-testés</Text>
+                </Button>
+              </Segment>
+            </View>
             <ScrollView>
               {products.length && (
                 <FlatList

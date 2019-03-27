@@ -77,11 +77,16 @@ class ProductPage extends React.Component {
           <View
             style={{
               flexDirection: 'row',
-              padding: 10,
+              alignItems: 'center',
             }}
           >
             {labels_at !== 'one-voice' ? (
-              <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  padding: 10,
+                }}
+              >
                 {labels_at.map((label, index) => (
                   <Image
                     key={index}

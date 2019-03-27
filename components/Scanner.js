@@ -11,11 +11,11 @@ export default class Scanner extends Component {
   }
 
   render() {
-    const { scan, dataItem } = this.props;
+    const { scan, dataItem, resetData } = this.props;
     return (
       <View style={{ flex: 1 }}>
         {dataItem ? (
-          <ProductPage dataItem={dataItem} />
+          <ProductPage dataItem={dataItem} resetData={() => resetData()} />
         ) : (
           <Fragment>
             <View

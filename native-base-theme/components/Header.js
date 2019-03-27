@@ -256,21 +256,18 @@ export default (variables /* : * */ = variable) => {
         paddingRight: variables.buttonPadding,
         paddingLeft: platform === 'ios' && platformStyle !== 'material' ? 4 : 8,
       },
-      flex: platform === 'ios' && platformStyle !== 'material' ? 1 : 0.4,
+      flex: 1,
       alignSelf: 'center',
       alignItems: 'flex-start',
     },
     'NativeBase.Body': {
       flex: 1,
-      alignItems:
-        platform === 'ios' && platformStyle !== 'material'
-          ? 'center'
-          : 'flex-start',
+      alignItems: 'center',
       alignSelf: 'center',
       'NativeBase.Segment': {
         borderWidth: 0,
         alignSelf: 'flex-end',
-        marginRight: platform === 'ios' ? -40 : -55,
+        marginRight: -40,
       },
       'NativeBase.Button': {
         alignSelf: 'center',
@@ -370,8 +367,7 @@ export default (variables /* : * */ = variable) => {
     backgroundColor: variables.toolbarDefaultBg,
     flexDirection: 'row',
     // paddingHorizontal: 10,
-    paddingLeft:
-      platform === 'ios' && variables.platformStyle !== 'material' ? 6 : 10,
+    paddingLeft: 6,
     paddingRight: 10,
     justifyContent: 'center',
     paddingTop: platform === 'ios' ? 18 : 0,

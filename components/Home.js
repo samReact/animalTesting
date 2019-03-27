@@ -8,6 +8,7 @@ import {
   Right,
   Title,
   Content,
+  View,
 } from 'native-base';
 import { Switch, Route } from 'react-router-native';
 import ScannerPage from './ScannerPage';
@@ -32,7 +33,7 @@ export default class Home extends React.Component {
           <Left>
             <Image style={{ width: 40, height: 40 }} source={logoWhite} />
           </Left>
-          <Body>
+          <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Title>Animal Testing</Title>
           </Body>
           <Right />

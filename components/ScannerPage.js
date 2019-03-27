@@ -1,14 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import axios from 'axios';
 import Scanner from './Scanner';
-import PermissionDenied from './PermissionDenied';
 
 export default class ScannerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasCameraPermission: false,
       product: {},
       loading: false,
     };
@@ -23,7 +21,7 @@ export default class ScannerPage extends React.Component {
       })
       .catch(err => {
         this.setState({ loading: false });
-        return console.log(err);
+        return Alert.alert('Erreur', err);
       });
   };
 

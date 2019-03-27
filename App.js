@@ -22,6 +22,7 @@ export default class App extends React.Component {
     this.state = { hasCameraPermission: false };
   }
 
+  //loading custom fonts
   async componentDidMount() {
     await Font.loadAsync({
       Roboto,
@@ -31,6 +32,7 @@ export default class App extends React.Component {
   }
 
   askPermissions = async () => {
+    //asking user Camera permission
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     if (status === 'granted') {
       this.setState({ hasCameraPermission: true });

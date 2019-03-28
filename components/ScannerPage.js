@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import axios from 'axios';
 import Scanner from './Scanner';
+import { Spinner } from 'native-base';
 
 export default class ScannerPage extends React.Component {
   constructor(props) {
@@ -30,11 +31,19 @@ export default class ScannerPage extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Scanner
-          dataItem={product.data}
-          scan={this.handleBarCodeScanned}
-          resetData={() => this.setState({ product: {} })}
-        />
+        {loading ? (
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Spinner />
+          </View>
+        ) : (
+          <Scanner
+            dataItem={product.data}
+            scan={this.handleBarCodeScanned}
+            resetData={() => this.setState({ product: {} })}
+          />
+        )}
       </View>
     );
   }

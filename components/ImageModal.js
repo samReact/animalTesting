@@ -39,7 +39,7 @@ class ImageModal extends Component {
             />
           </TouchableOpacity>
         </Modal>
-        <Image source={{ uri }} style={{ width: 100, height: 150 }} />
+        <Image source={{ uri }} style={{ width: 100, height: 170 }} />
       </TouchableOpacity>
     );
   }

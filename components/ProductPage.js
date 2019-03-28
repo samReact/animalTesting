@@ -27,6 +27,7 @@ class ProductPage extends React.Component {
       comment_at,
       alert_image_url,
       links_url,
+      categories,
     } = dataItem[0];
     return (
       <Content style={{ flex: 1 }}>
@@ -54,7 +55,7 @@ class ProductPage extends React.Component {
                   fontWeight: 'bold',
                 }}
               >
-                {brand_name} -{product_name}
+                {brand_name} - {product_name}
               </Text>
               <View style={{ flexDirection: 'row' }}>
                 <Image
@@ -66,6 +67,7 @@ class ProductPage extends React.Component {
                 </Text>
               </View>
               <Text style={{ color: '#707070' }}>{quantity}</Text>
+              <Text style={{ color: '#707070' }}>{categories}</Text>
               <Text style={{ color: '#707070' }}>{product_infos}</Text>
               <Text style={{ color: '#707070' }}>
                 Mise à jour le {update_date}
@@ -85,11 +87,11 @@ class ProductPage extends React.Component {
                   padding: 10,
                 }}
               >
-                {labels_at.map((label, index) => (
+                {labels_at.slice(0, 5).map((label, index) => (
                   <Image
                     key={index}
                     source={{ uri: label }}
-                    style={{ height: 30, width: 30, marginRight: 20 }}
+                    style={{ height: 40, width: 40, marginRight: 20 }}
                   />
                 ))}
               </View>
@@ -102,7 +104,7 @@ class ProductPage extends React.Component {
             >
               <Image
                 source={{ uri: alert_image_url }}
-                style={{ height: 30, width: 30, marginRight: 20 }}
+                style={{ height: 40, width: 40, marginRight: 20 }}
               />
             </View>
           </View>

@@ -65,7 +65,7 @@ class ProductPageBis extends React.Component {
                       fontWeight: 'bold',
                     }}
                   >
-                    {item.brand_name} -{item.product_name}
+                    {item.brand_name} - {item.product_name}
                   </Text>
                   <View style={{ flexDirection: 'row' }}>
                     <Image
@@ -77,6 +77,7 @@ class ProductPageBis extends React.Component {
                     </Text>
                   </View>
                   <Text style={{ color: '#707070' }}>{item.quantity}</Text>
+                  <Text style={{ color: '#707070' }}>{item.categories}</Text>
                   <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
 
                   <Text style={{ color: '#707070' }}>
@@ -97,11 +98,11 @@ class ProductPageBis extends React.Component {
                       padding: 10,
                     }}
                   >
-                    {item.labels_at.map((label, index) => (
+                    {item.labels_at.slice(0, 5).map((label, index) => (
                       <Image
                         key={index}
                         source={{ uri: label }}
-                        style={{ height: 30, width: 30, marginRight: 20 }}
+                        style={{ height: 40, width: 40, marginRight: 20 }}
                       />
                     ))}
                   </View>
@@ -114,7 +115,7 @@ class ProductPageBis extends React.Component {
                 >
                   <Image
                     source={{ uri: item.alert_image_url }}
-                    style={{ height: 30, width: 30, marginRight: 20 }}
+                    style={{ height: 40, width: 40, marginRight: 20 }}
                   />
                 </View>
               </View>
@@ -144,7 +145,7 @@ class ProductPageBis extends React.Component {
             paddingBottom: 10,
           }}
         >
-          {item.brand_name} -{item.product_name}
+          {item.brand_name} - {item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <ImageModal uri={item.image_url} />
@@ -155,6 +156,7 @@ class ProductPageBis extends React.Component {
             }}
           >
             <Text style={{ color: '#707070' }}>{item.quantity}</Text>
+            <Text style={{ color: '#707070' }}>{item.categories}</Text>
             <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
 
             <Text style={{ color: '#707070' }}>
@@ -175,7 +177,7 @@ class ProductPageBis extends React.Component {
                 justifyContent: 'space-between',
               }}
             >
-              {item.labels_at.map((label, index) => (
+              {item.labels_at.slice(0, 5).map((label, index) => (
                 <Image
                   key={index}
                   source={{ uri: label }}

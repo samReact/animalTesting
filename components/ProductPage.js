@@ -55,7 +55,8 @@ class ProductPage extends React.Component {
                   fontWeight: 'bold',
                 }}
               >
-                {brand_name} - {product_name}
+                {brand_name} -
+{product_name}
               </Text>
               <View style={{ flexDirection: 'row' }}>
                 <Image

@@ -12,6 +12,8 @@ import {
 import { withRouter } from 'react-router-native';
 import axios from 'axios';
 import ProductPageBis from './ProductPageBis';
+import HeaderComponent from './HeaderComponent';
+import FooterComponent from './FooterComponent';
 
 class AllProductsPage extends React.Component {
   constructor(props) {
@@ -122,6 +124,7 @@ class AllProductsPage extends React.Component {
             Alert.alert('Modal has been closed.');
           }}
         >
+          <HeaderComponent />
           <Content padder style={{ flex: 1 }}>
             <View>
               <Button
@@ -200,6 +203,7 @@ class AllProductsPage extends React.Component {
               </ScrollView>
             )}
           </Content>
+          <FooterComponent />
         </Modal>
         <Text> Voir tous les produits crème main NON TESTÉS</Text>
       </Button>

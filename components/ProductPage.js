@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, ScrollView } from 'react-native';
-import { Button, Icon, Text, Content, View } from 'native-base';
+import { Button, Icon, Text, Content, View, H3 } from 'native-base';
 import { withRouter } from 'react-router-native';
 import Logo from '../assets/Logo_Animal_Testing.png';
 import AllProductsPage from './AllProductsPage';
@@ -31,11 +31,19 @@ class ProductPage extends React.Component {
     } = dataItem[0];
     return (
       <Content style={{ flex: 1 }}>
-        <View>
+        <View style={{ padding: 10 }}>
           <Button iconLeft transparent onPress={() => resetData()}>
-            <Icon name="arrow-back" />
+            <Icon
+              name="chevron-left"
+              style={{ color: '#000', fontSize: 45 }}
+              type="MaterialCommunityIcons"
+            />
             <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-              <Text>RETOUR</Text>
+              <Text
+                style={{ fontWeight: 'bold', color: '#66C3AE', fontSize: 18 }}
+              >
+                RETOUR
+              </Text>
               <Text>1 résultat trouvé</Text>
             </View>
           </Button>
@@ -55,7 +63,8 @@ class ProductPage extends React.Component {
                   fontWeight: 'bold',
                 }}
               >
-                {brand_name} -{product_name}
+                {brand_name} -
+{product_name}
               </Text>
               <View style={{ flexDirection: 'row' }}>
                 <Image
@@ -119,7 +128,7 @@ class ProductPage extends React.Component {
               <Text
                 style={{
                   fontWeight: 'bold',
-                  fontSize: 20,
+                  fontSize: 18,
                   paddingLeft: 10,
                 }}
               >
@@ -127,24 +136,6 @@ class ProductPage extends React.Component {
               </Text>
             </View>
             <Text>{comment_at}</Text>
-            <Text>
-              lorem adsajknkjandkjnkjn jnjbjbn andands lorem adsajknkjandkjnkjn
-              jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
-              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
-              andands
-            </Text>
           </View>
         </ScrollView>
       </Content>

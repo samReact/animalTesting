@@ -37,15 +37,27 @@ class ProductPageBis extends React.Component {
           }}
         >
           <Content padder style={{ flex: 1 }}>
-            <View>
+            <View style={{ padding: 10 }}>
               <Button
                 iconLeft
                 transparent
                 onPress={() => this.setModalVisible(false)}
               >
-                <Icon name="arrow-back" />
+                <Icon
+                  name="chevron-left"
+                  style={{ color: '#000', fontSize: 45 }}
+                  type="MaterialCommunityIcons"
+                />
                 <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                  <Text>RETOUR</Text>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: '#66C3AE',
+                      fontSize: 18,
+                    }}
+                  >
+                    RETOUR
+                  </Text>
                   <Text>1 résultat trouvé</Text>
                 </View>
               </Button>
@@ -65,7 +77,8 @@ class ProductPageBis extends React.Component {
                       fontWeight: 'bold',
                     }}
                   >
-                    {item.brand_name} -{item.product_name}
+                    {item.brand_name} -
+{item.product_name}
                   </Text>
                   <View style={{ flexDirection: 'row' }}>
                     <Image
@@ -145,7 +158,8 @@ class ProductPageBis extends React.Component {
             paddingBottom: 10,
           }}
         >
-          {item.brand_name} -{item.product_name}
+          {item.brand_name} -
+{item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <ImageModal uri={item.image_url} />

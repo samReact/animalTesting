@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
 import axios from 'axios';
-import Scanner from './Scanner';
 import { Spinner } from 'native-base';
+import Scanner from './Scanner';
 
 export default class ScannerPage extends React.Component {
   constructor(props) {

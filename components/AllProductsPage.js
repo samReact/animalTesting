@@ -139,9 +139,21 @@ class AllProductsPage extends React.Component {
                 transparent
                 onPress={() => this.setModalVisible(false)}
               >
-                <Icon name="arrow-back" />
+                <Icon
+                  name="chevron-left"
+                  style={{ color: '#000', fontSize: 45 }}
+                  type="MaterialCommunityIcons"
+                />
                 <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                  <Text>RESULTATS</Text>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: '#66C3AE',
+                      fontSize: 18,
+                    }}
+                  >
+                    RESULTATS
+                  </Text>
                   <Text>
                     {filteredProduct.length || 0} produit(s) trouvé(s)
                   </Text>
@@ -190,7 +202,7 @@ class AllProductsPage extends React.Component {
                 <Spinner />
               </View>
             ) : (
-              <ScrollView>
+              <ScrollView keyboardShouldPersistTaps="always">
                 {products.length && (
                   <FlatList
                     keyExtractor={item => item.product_code}

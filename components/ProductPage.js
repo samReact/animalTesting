@@ -44,6 +44,7 @@ class ProductPage extends React.Component {
             <ImageModal uri={image_url} />
             <View
               style={{
+                flex: 1,
                 paddingLeft: 10,
                 justifyContent: 'space-between',
               }}

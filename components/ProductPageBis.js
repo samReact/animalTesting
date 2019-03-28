@@ -53,12 +53,9 @@ class ProductPageBis extends React.Component {
             <ScrollView>
               <View style={{ flexDirection: 'row', padding: 10 }}>
                 <ImageModal uri={item.image_url} />
-                {/* <Image
-                  source={{ uri: item.image_url }}
-                  style={{ width: 100, height: 130 }}
-                /> */}
                 <View
                   style={{
+                    flex: 1,
                     paddingLeft: 10,
                     justifyContent: 'space-between',
                   }}

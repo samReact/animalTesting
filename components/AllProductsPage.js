@@ -1,6 +1,14 @@
 import React from 'react';
 import { FlatList, ScrollView, Modal, Alert } from 'react-native';
-import { Text, View, Icon, Content, Segment, Button } from 'native-base';
+import {
+  Text,
+  View,
+  Icon,
+  Content,
+  Segment,
+  Button,
+  Spinner,
+} from 'native-base';
 import { withRouter } from 'react-router-native';
 import axios from 'axios';
 import ProductPageBis from './ProductPageBis';
@@ -20,6 +28,7 @@ class AllProductsPage extends React.Component {
 
   getProducts = async () => {
     const { links } = this.props;
+    this.setState({ loading: true });
     await axios
       .get(`https://animal-testing.fr/${links}`)
       .then(res => {
@@ -45,10 +54,12 @@ class AllProductsPage extends React.Component {
 
   handleTestedProducts = () => {
     const { products } = this.state;
+    this.setState({ loading: true });
     const filteredProduct = products.filter(
       product => product.status_text !== 'Non testé sur les animaux'
     );
     this.setState({
+      loading: false,
       filteredProduct,
       testedProducts: true,
       NonTestedProducts: false,
@@ -57,11 +68,13 @@ class AllProductsPage extends React.Component {
 
   handleNonTestedProducts = () => {
     const { products } = this.state;
+    this.setState({ loading: true });
     const filteredProduct = products.filter(
       product => product.status_text === 'Non testé sur les animaux'
     );
 
     this.setState({
+      loading: false,
       filteredProduct,
       testedProducts: false,
       NonTestedProducts: true,
@@ -87,6 +100,7 @@ class AllProductsPage extends React.Component {
       NonTestedProducts,
       filteredProduct,
       modalVisible,
+      loading,
     } = this.state;
 
     return (
@@ -161,24 +175,30 @@ class AllProductsPage extends React.Component {
                 </Button>
               </Segment>
             </View>
-            <ScrollView>
-              {products.length && (
-                <FlatList
-                  keyExtractor={item => item.product_code}
-                  data={filteredProduct}
-                  ItemSeparatorComponent={() => (
-                    <View
-                      style={{
-                        marginTop: 10,
-                        borderWidth: 0.5,
-                        borderColor: '#909090',
-                      }}
-                    />
-                  )}
-                  renderItem={({ item }) => <ProductPageBis item={item} />}
-                />
-              )}
-            </ScrollView>
+            {loading ? (
+              <View>
+                <Spinner />
+              </View>
+            ) : (
+              <ScrollView>
+                {products.length && (
+                  <FlatList
+                    keyExtractor={item => item.product_code}
+                    data={filteredProduct}
+                    ItemSeparatorComponent={() => (
+                      <View
+                        style={{
+                          marginTop: 10,
+                          borderWidth: 0.5,
+                          borderColor: '#909090',
+                        }}
+                      />
+                    )}
+                    renderItem={({ item }) => <ProductPageBis item={item} />}
+                  />
+                )}
+              </ScrollView>
+            )}
           </Content>
         </Modal>
         <Text> Voir tous les produits crème main NON TESTÉS</Text>

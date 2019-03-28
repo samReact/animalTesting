@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, TouchableOpacity } from 'react-native';
+import { Linking, TouchableOpacity, Platform } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 
@@ -68,18 +68,35 @@ const FollowUs = () => (
 
         <TouchableOpacity
           onPress={() => {
-            const FANPAGE_ID = 'AnimalTestingFR';
-            const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
-            const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${FANPAGE_ID}/`;
-            Linking.canOpenURL(FANPAGE_URL_FOR_APP)
-              .then(supported => {
-                if (!supported) {
-                  Linking.openURL(FANPAGE_URL_FOR_BROWSER);
-                } else {
-                  Linking.openURL(FANPAGE_URL_FOR_APP);
-                }
-              })
-              .catch(err => console.error('An error occurred', err));
+            if (Platform.OS === 'android') {
+              const FANPAGE_ID = 'AnimalTestingFR';
+              const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
+              const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${FANPAGE_ID}/`;
+              Linking.canOpenURL(FANPAGE_URL_FOR_APP)
+                .then(supported => {
+                  if (!supported) {
+                    Linking.openURL(FANPAGE_URL_FOR_BROWSER);
+                  } else {
+                    Linking.openURL(FANPAGE_URL_FOR_APP);
+                  }
+                })
+                .catch(err => console.error('An error occurred', err));
+              // run your code here
+            } else if (Platform.OS === 'ios') {
+              // const FANPAGE_ID = 'AnimalTestingFR';
+              // const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
+              // const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${FANPAGE_ID}/`;
+              // Linking.canOpenURL(FANPAGE_URL_FOR_APP)
+              //   .then(supported => {
+              //     if (!supported) {
+              //       Linking.openURL(FANPAGE_URL_FOR_BROWSER);
+              //     } else {
+              //       Linking.openURL(FANPAGE_URL_FOR_APP);
+              //     }
+              //   })
+              //   .catch(err => console.error('An error occurred', err));
+              // // run your code here
+            }
           }}
           style={{
             backgroundColor: '#66C3AE',

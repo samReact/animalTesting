@@ -37,7 +37,7 @@ class ProductPageBis extends React.Component {
           }}
         >
           <Content padder style={{ flex: 1 }}>
-            <View style={{ padding: 10 }}>
+            <View style={{ paddingTop: 10, paddingBottom: 10 }}>
               <Button
                 iconLeft
                 transparent
@@ -77,8 +77,7 @@ class ProductPageBis extends React.Component {
                       fontWeight: 'bold',
                     }}
                   >
-                    {item.brand_name} -
-{item.product_name}
+                    {item.brand_name} - {item.product_name}
                   </Text>
                   <View style={{ flexDirection: 'row' }}>
                     <Image
@@ -158,8 +157,7 @@ class ProductPageBis extends React.Component {
             paddingBottom: 10,
           }}
         >
-          {item.brand_name} -
-{item.product_name}
+          {item.brand_name} - {item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <ImageModal uri={item.image_url} />

@@ -31,7 +31,7 @@ class ProductPage extends React.Component {
     } = dataItem[0];
     return (
       <Content style={{ flex: 1 }}>
-        <View style={{ padding: 10 }}>
+        <View style={{ paddingTop: 10, paddingBottom: 10 }}>
           <Button iconLeft transparent onPress={() => resetData()}>
             <Icon
               name="chevron-left"
@@ -63,8 +63,7 @@ class ProductPage extends React.Component {
                   fontWeight: 'bold',
                 }}
               >
-                {brand_name} -
-{product_name}
+                {brand_name} - {product_name}
               </Text>
               <View style={{ flexDirection: 'row' }}>
                 <Image

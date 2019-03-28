@@ -66,8 +66,7 @@ class ProductPageBis extends React.Component {
                       fontWeight: 'bold',
                     }}
                   >
-                    {item.brand_name} -
-{item.product_name}
+                    {item.brand_name} -{item.product_name}
                   </Text>
                   <View style={{ flexDirection: 'row' }}>
                     <Image
@@ -146,8 +145,7 @@ class ProductPageBis extends React.Component {
             paddingBottom: 10,
           }}
         >
-          {item.brand_name} -
-{item.product_name}
+          {item.brand_name} -{item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <Image

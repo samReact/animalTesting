@@ -202,7 +202,7 @@ class AllProductsPage extends React.Component {
                 <Spinner />
               </View>
             ) : (
-              <ScrollView keyboardShouldPersistTaps="always">
+              <ScrollView keyboardShouldPersistTaps="handled">
                 {products.length && (
                   <FlatList
                     keyExtractor={item => item.product_code}

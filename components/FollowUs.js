@@ -67,7 +67,20 @@ const FollowUs = () => (
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => Linking.openURL('https://twitter.com/AnimalTestingFR')}
+          onPress={() => {
+            const FANPAGE_ID = 'AnimalTestingFR';
+            const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
+            const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${FANPAGE_ID}/`;
+            Linking.canOpenURL(FANPAGE_URL_FOR_APP)
+              .then(supported => {
+                if (!supported) {
+                  Linking.openURL(FANPAGE_URL_FOR_BROWSER);
+                } else {
+                  Linking.openURL(FANPAGE_URL_FOR_APP);
+                }
+              })
+              .catch(err => console.error('An error occurred', err));
+          }}
           style={{
             backgroundColor: '#66C3AE',
             borderRadius: 50,
@@ -90,9 +103,20 @@ const FollowUs = () => (
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         <TouchableOpacity
-          onPress={() =>
-            Linking.openURL('https://www.instagram.com/animaltestingfr/')
-          }
+          onPress={() => {
+            const FANPAGE_ID = 'animaltestingfr';
+            const FANPAGE_URL_FOR_APP = `instagram://app/${FANPAGE_ID}/`;
+            const FANPAGE_URL_FOR_BROWSER = `https://www.instagram.com/${FANPAGE_ID}/`;
+            Linking.canOpenURL(FANPAGE_URL_FOR_APP)
+              .then(supported => {
+                if (!supported) {
+                  Linking.openURL(FANPAGE_URL_FOR_BROWSER);
+                } else {
+                  Linking.openURL(FANPAGE_URL_FOR_APP);
+                }
+              })
+              .catch(err => console.error('An error occurred', err));
+          }}
           style={{
             backgroundColor: '#66C3AE',
             borderRadius: 50,
@@ -109,13 +133,24 @@ const FollowUs = () => (
               color: 'white',
             }}
           />
-          <Text style={{ color: 'white' }}>instagram</Text>
+          <Text style={{ color: 'white' }}>Instagram</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() =>
-            Linking.openURL('https://www.facebook.com/animaltestingfrance/')
-          }
+          onPress={() => {
+            const FANPAGE_ID = '1791003694519572';
+            const FANPAGE_URL_FOR_APP = `fb://page/${FANPAGE_ID}`;
+            const FANPAGE_URL_FOR_BROWSER = `https://fb.com/${FANPAGE_ID}`;
+            Linking.canOpenURL(FANPAGE_URL_FOR_APP)
+              .then(supported => {
+                if (!supported) {
+                  Linking.openURL(FANPAGE_URL_FOR_BROWSER);
+                } else {
+                  Linking.openURL(FANPAGE_URL_FOR_APP);
+                }
+              })
+              .catch(err => console.error('An error occurred', err));
+          }}
           style={{
             backgroundColor: '#66C3AE',
             borderRadius: 50,

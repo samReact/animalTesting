@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Text, View, Content, Button, Icon } from 'native-base';
 import Logo from '../assets/Logo_Animal_Testing.png';
+import ImageModal from './ImageModal';
 
 class ProductPageBis extends React.Component {
   constructor(props) {
@@ -51,10 +52,11 @@ class ProductPageBis extends React.Component {
             </View>
             <ScrollView>
               <View style={{ flexDirection: 'row', padding: 10 }}>
-                <Image
+                <ImageModal uri={item.image_url} />
+                {/* <Image
                   source={{ uri: item.image_url }}
                   style={{ width: 100, height: 130 }}
-                />
+                /> */}
                 <View
                   style={{
                     paddingLeft: 10,
@@ -148,10 +150,7 @@ class ProductPageBis extends React.Component {
           {item.brand_name} -{item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
-          <Image
-            source={{ uri: item.image_url }}
-            style={{ width: 100, height: 130 }}
-          />
+          <ImageModal uri={item.image_url} />
           <View
             style={{
               paddingLeft: 10,

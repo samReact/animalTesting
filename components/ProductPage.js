@@ -4,6 +4,7 @@ import { Button, Icon, Text, Content, View } from 'native-base';
 import { withRouter } from 'react-router-native';
 import Logo from '../assets/Logo_Animal_Testing.png';
 import AllProductsPage from './AllProductsPage';
+import ImageModal from './ImageModal';
 
 class ProductPage extends React.Component {
   constructor(props) {
@@ -40,10 +41,7 @@ class ProductPage extends React.Component {
         </View>
         <ScrollView>
           <View style={{ flexDirection: 'row', padding: 10 }}>
-            <Image
-              source={{ uri: image_url }}
-              style={{ width: '20%', height: '100%' }}
-            />
+            <ImageModal uri={image_url} />
             <View
               style={{
                 paddingLeft: 10,

@@ -15,8 +15,15 @@ export default class ScannerPage extends React.Component {
 
   handleBarCodeScanned = ({ type, data }) => {
     this.setState({ loading: true });
-    axios
-      .get(`https://animal-testing.fr/api/v1/product/${data}`)
+    axios({
+      method: 'GET',
+      url: `https://animal-testing.fr/api/v1/product/${data}`,
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        UserAgent: 'Appli Animal Testing/1.0',
+        ContentType: 'application/json; charset=utf-8',
+      },
+    })
       .then(res => {
         this.setState({ loading: false, product: res.data });
       })

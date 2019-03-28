@@ -31,8 +31,15 @@ class AllProductsPage extends React.Component {
   getProducts = async () => {
     const { links } = this.props;
     this.setState({ loading: true });
-    await axios
-      .get(`https://animal-testing.fr/${links}`)
+    await axios({
+      method: 'GET',
+      url: `https://animal-testing.fr/${links}`,
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        UserAgent: 'Appli Animal Testing/1.0',
+        ContentType: 'application/json; charset=utf-8',
+      },
+    })
       .then(res => {
         this.setState({
           loading: false,

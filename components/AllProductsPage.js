@@ -70,7 +70,11 @@ class AllProductsPage extends React.Component {
 
   handleSort = () => {
     const { filteredProduct } = this.state;
-    const sortedList = filteredProduct.sort((a, b) => a - b);
+    const sortedList = filteredProduct.sort((a, b) =>
+      a.brand_name < b.brand_name
+        ? a.brand_name.localeCompare(b.brand_name)
+        : b.brand_name.localeCompare(a.brand_name)
+    );
     this.setState({
       filteredProduct: sortedList,
     });

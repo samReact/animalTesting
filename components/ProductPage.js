@@ -1,10 +1,8 @@
 import React from 'react';
-import { Image, TouchableOpacity, ImageBackground } from 'react-native';
-import { Button, Icon, Text, Content, View, H2 } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Image, ScrollView } from 'react-native';
+import { Button, Icon, Text, Content, View } from 'native-base';
 import { withRouter } from 'react-router-native';
 import Logo from '../assets/Logo_Animal_Testing.png';
-import * as routes from '../constant/routes';
 import AllProductsPage from './AllProductsPage';
 
 class ProductPage extends React.Component {
@@ -14,15 +12,15 @@ class ProductPage extends React.Component {
   }
 
   render() {
-    const { dataItem, history, resetData } = this.props;
+    const { dataItem, resetData } = this.props;
     const {
       image_url,
+      product_infos,
       brand_name,
       product_name,
       status_image_url,
       status_text,
       labels_at,
-      categories,
       quantity,
       update_date,
       comment_at,
@@ -40,11 +38,11 @@ class ProductPage extends React.Component {
             </View>
           </Button>
         </View>
-        <View>
+        <ScrollView>
           <View style={{ flexDirection: 'row', padding: 10 }}>
             <Image
               source={{ uri: image_url }}
-              style={{ width: 100, height: 130 }}
+              style={{ width: '20%', height: '100%' }}
             />
             <View
               style={{
@@ -57,7 +55,7 @@ class ProductPage extends React.Component {
                   fontWeight: 'bold',
                 }}
               >
-                {product_name}
+                {brand_name} - {product_name}
               </Text>
               <View style={{ flexDirection: 'row' }}>
                 <Image
@@ -69,6 +67,7 @@ class ProductPage extends React.Component {
                 </Text>
               </View>
               <Text style={{ color: '#707070' }}>{quantity}</Text>
+              <Text style={{ color: '#707070' }}>{product_infos}</Text>
               <Text style={{ color: '#707070' }}>
                 Mise à jour le {update_date}
               </Text>
@@ -115,10 +114,7 @@ class ProductPage extends React.Component {
           ) : null}
           <View style={{ padding: 10 }}>
             <View style={{ flexDirection: 'row' }}>
-              <Image
-                style={{ width: 40, height: 40 }}
-                source={require('../assets/Logo_Animal_Testing.png')}
-              />
+              <Image style={{ width: 40, height: 40 }} source={Logo} />
               <Text
                 style={{
                   fontWeight: 'bold',
@@ -130,8 +126,26 @@ class ProductPage extends React.Component {
               </Text>
             </View>
             <Text>{comment_at}</Text>
+            <Text>
+              lorem adsajknkjandkjnkjn jnjbjbn andands lorem adsajknkjandkjnkjn
+              jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andandslorem adsajknkjandkjnkjn jnjbjbn andandslorem
+              adsajknkjandkjnkjn jnjbjbn andandslorem adsajknkjandkjnkjn jnjbjbn
+              andands
+            </Text>
           </View>
-        </View>
+        </ScrollView>
       </Content>
     );
   }

@@ -1,6 +1,13 @@
 import React from 'react';
-import { Image, Modal, Alert, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  Modal,
+  Alert,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import { Text, View, Content, Button, Icon } from 'native-base';
+import Logo from '../assets/Logo_Animal_Testing.png';
 
 class ProductPageBis extends React.Component {
   constructor(props) {
@@ -42,7 +49,7 @@ class ProductPageBis extends React.Component {
                 </View>
               </Button>
             </View>
-            <View>
+            <ScrollView>
               <View style={{ flexDirection: 'row', padding: 10 }}>
                 <Image
                   source={{ uri: item.image_url }}
@@ -59,7 +66,7 @@ class ProductPageBis extends React.Component {
                       fontWeight: 'bold',
                     }}
                   >
-                    {item.product_name}
+                    {item.brand_name} - {item.product_name}
                   </Text>
                   <View style={{ flexDirection: 'row' }}>
                     <Image
@@ -71,6 +78,8 @@ class ProductPageBis extends React.Component {
                     </Text>
                   </View>
                   <Text style={{ color: '#707070' }}>{item.quantity}</Text>
+                  <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
+
                   <Text style={{ color: '#707070' }}>
                     Mise à jour le {item.update_date}
                   </Text>
@@ -113,10 +122,7 @@ class ProductPageBis extends React.Component {
 
               <View style={{ padding: 10 }}>
                 <View style={{ flexDirection: 'row' }}>
-                  <Image
-                    style={{ width: 40, height: 40 }}
-                    source={require('../assets/Logo_Animal_Testing.png')}
-                  />
+                  <Image style={{ width: 40, height: 40 }} source={Logo} />
                   <Text
                     style={{
                       fontWeight: 'bold',
@@ -129,7 +135,7 @@ class ProductPageBis extends React.Component {
                 </View>
                 <Text>{item.comment_at}</Text>
               </View>
-            </View>
+            </ScrollView>
           </Content>
         </Modal>
         <Text
@@ -139,7 +145,7 @@ class ProductPageBis extends React.Component {
             paddingBottom: 10,
           }}
         >
-          {item.product_name}
+          {item.brand_name} - {item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <Image
@@ -153,6 +159,7 @@ class ProductPageBis extends React.Component {
             }}
           >
             <Text style={{ color: '#707070' }}>{item.quantity}</Text>
+            <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
 
             <Text style={{ color: '#707070' }}>
               Mise à jour le {item.update_date}

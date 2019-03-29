@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, TouchableOpacity, Alert, Image } from 'react-native';
+import PropTypes from 'prop-types';
 
 class ImageModal extends Component {
   state = {
@@ -12,6 +13,7 @@ class ImageModal extends Component {
 
   render() {
     const { uri } = this.props;
+    const { modalVisible } = this.state;
 
     return (
       <TouchableOpacity
@@ -22,7 +24,7 @@ class ImageModal extends Component {
         <Modal
           animationType="slide"
           transparent={false}
-          visible={this.state.modalVisible}
+          visible={modalVisible}
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}
@@ -39,9 +41,14 @@ class ImageModal extends Component {
             />
           </TouchableOpacity>
         </Modal>
-        <Image source={{ uri }} style={{ width: 100, height: 170 }} />
+        <Image source={{ uri }} style={{ width: 100, height: 180 }} />
       </TouchableOpacity>
     );
   }
 }
+
+ImageModal.propTypes = {
+  uri: PropTypes.string.isRequired,
+};
+
 export default ImageModal;

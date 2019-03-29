@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Text, View, Content, Button, Icon } from 'native-base';
+import PropTypes from 'prop-types';
 import Logo from '../assets/Logo_Animal_Testing.png';
 import ImageModal from './ImageModal';
 
@@ -167,6 +168,15 @@ class ProductPageBis extends React.Component {
               justifyContent: 'space-between',
             }}
           >
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={{ uri: item.status_image_url }}
+                style={{ height: 20, width: 20 }}
+              />
+              <Text style={{ flex: 1, paddingLeft: 10, color: '#707070' }}>
+                {item.status_text}
+              </Text>
+            </View>
             <Text style={{ color: '#707070' }}>{item.quantity}</Text>
             <Text style={{ color: '#707070' }}>{item.categories}</Text>
             <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
@@ -174,15 +184,7 @@ class ProductPageBis extends React.Component {
             <Text style={{ color: '#707070' }}>
               Mise à jour le {item.update_date}
             </Text>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                source={{ uri: item.status_image_url }}
-                style={{ height: 20, width: 20 }}
-              />
-              <Text style={{ paddingLeft: 10, color: '#707070' }}>
-                {item.status_text}
-              </Text>
-            </View>
+
             <View
               style={{
                 flexDirection: 'row',
@@ -203,5 +205,9 @@ class ProductPageBis extends React.Component {
     );
   }
 }
+
+ProductPageBis.propTypes = {
+  item: PropTypes.object.isRequired,
+};
 
 export default ProductPageBis;

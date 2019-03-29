@@ -13,7 +13,7 @@ export default class ScannerPage extends React.Component {
     };
   }
 
-  handleBarCodeScanned = ({ type, data }) => {
+  handleBarCodeScanned = ({ data }) => {
     this.setState({ loading: true });
     axios({
       method: 'GET',

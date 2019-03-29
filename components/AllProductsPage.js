@@ -10,6 +10,7 @@ import {
   Spinner,
 } from 'native-base';
 import { withRouter } from 'react-router-native';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import ProductPageBis from './ProductPageBis';
 import HeaderComponent from './HeaderComponent';
@@ -25,6 +26,7 @@ class AllProductsPage extends React.Component {
       testedProducts: false,
       NonTestedProducts: true,
       modalVisible: false,
+      sorted: false,
     };
   }
 
@@ -47,7 +49,7 @@ class AllProductsPage extends React.Component {
           filteredProduct: res.data.data,
         });
       })
-      .catch(err => {
+      .catch(() => {
         this.setState({ loading: false });
         return Alert.alert('Erreur', 'Produit non trouvé');
       });
@@ -91,7 +93,7 @@ class AllProductsPage extends React.Component {
   };
 
   handleSort = () => {
-    const { filteredProduct } = this.state;
+    const { filteredProduct, sorted } = this.state;
     const sortedList = filteredProduct.sort((a, b) =>
       a.brand_name < b.brand_name
         ? a.brand_name.localeCompare(b.brand_name)
@@ -99,6 +101,7 @@ class AllProductsPage extends React.Component {
     );
     this.setState({
       filteredProduct: sortedList,
+      sorted: !sorted,
     });
   };
 
@@ -110,6 +113,7 @@ class AllProductsPage extends React.Component {
       filteredProduct,
       modalVisible,
       loading,
+      sorted,
     } = this.state;
 
     return (
@@ -165,13 +169,18 @@ class AllProductsPage extends React.Component {
                 flex: 1,
                 flexDirection: 'row',
                 alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <View style={{ marginLeft: -15 }}>
-                <Button icon transparent onPress={() => this.handleSort()}>
-                  <Icon name="sort-by-alpha" type="MaterialIcons" />
-                </Button>
-              </View>
+              {filteredProduct.length > 1 && (
+                <View style={{ marginLeft: -15, marginRight: 5 }}>
+                  <Button transparent onPress={() => this.handleSort()}>
+                    <Text style={{ fontSize: 20 }}>
+                      {sorted ? 'Z A' : 'A Z'}
+                    </Text>
+                  </Button>
+                </View>
+              )}
 
               <Segment
                 style={{
@@ -182,18 +191,18 @@ class AllProductsPage extends React.Component {
                 }}
               >
                 <Button
-                  first
-                  active={testedProducts}
-                  onPress={() => this.handleTestedProducts()}
-                >
-                  <Text>Produits testés</Text>
-                </Button>
-                <Button
                   last
                   active={NonTestedProducts}
                   onPress={() => this.handleNonTestedProducts()}
                 >
                   <Text>Produits non-testés</Text>
+                </Button>
+                <Button
+                  first
+                  active={testedProducts}
+                  onPress={() => this.handleTestedProducts()}
+                >
+                  <Text>Produits testés</Text>
                 </Button>
               </Segment>
             </View>
@@ -229,5 +238,9 @@ class AllProductsPage extends React.Component {
     );
   }
 }
+
+AllProductsPage.propTypes = {
+  links: PropTypes.string.isRequired,
+};
 
 export default withRouter(AllProductsPage);

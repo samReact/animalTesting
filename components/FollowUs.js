@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, TouchableOpacity } from 'react-native';
+import { Linking, TouchableOpacity, Alert } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 
@@ -79,7 +79,7 @@ const FollowUs = () => (
                   Linking.openURL(FANPAGE_URL_FOR_APP);
                 }
               })
-              .catch(err => console.error('An error occurred', err));
+              .catch(err => Alert.alert('Erreur', err));
           }}
           style={{
             backgroundColor: '#66C3AE',
@@ -115,7 +115,7 @@ const FollowUs = () => (
                   Linking.openURL(FANPAGE_URL_FOR_APP);
                 }
               })
-              .catch(err => console.error('An error occurred', err));
+              .catch(err => Alert.alert('Erreur', err));
           }}
           style={{
             backgroundColor: '#66C3AE',
@@ -149,7 +149,7 @@ const FollowUs = () => (
                   Linking.openURL(FANPAGE_URL_FOR_APP);
                 }
               })
-              .catch(err => console.error('An error occurred', err));
+              .catch(err => Alert.alert('Erreur', err));
           }}
           style={{
             backgroundColor: '#66C3AE',

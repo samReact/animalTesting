@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { withRouter } from 'react-router-native';
 
 const womenPic = require('../assets/woman-comparing-prices-smartphone-drugstore-youn-her-department-supermarket-47155866.jpg');
 
@@ -12,4 +11,4 @@ const HomePage = () => (
   />
 );
 
-export default withRouter(HomePage);
+export default HomePage;

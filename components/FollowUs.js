@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Linking, TouchableOpacity, Alert } from 'react-native';
-=======
 import { Linking, TouchableOpacity, Platform } from 'react-native';
->>>>>>> 0dc8e4ea6da33cc8bfc771a2024968dca31bcd6c
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 
@@ -72,20 +68,6 @@ const FollowUs = () => (
 
         <TouchableOpacity
           onPress={() => {
-<<<<<<< HEAD
-            const FANPAGE_ID = 'AnimalTestingFR';
-            const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
-            const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${FANPAGE_ID}/`;
-            Linking.canOpenURL(FANPAGE_URL_FOR_APP)
-              .then(supported => {
-                if (!supported) {
-                  Linking.openURL(FANPAGE_URL_FOR_BROWSER);
-                } else {
-                  Linking.openURL(FANPAGE_URL_FOR_APP);
-                }
-              })
-              .catch(err => Alert.alert('Erreur', err));
-=======
             if (Platform.OS === 'android') {
               const FANPAGE_ID = 'AnimalTestingFR';
               const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
@@ -101,21 +83,8 @@ const FollowUs = () => (
                 .catch(err => console.error('An error occurred', err));
               // run your code here
             } else if (Platform.OS === 'ios') {
-              // const FANPAGE_ID = 'AnimalTestingFR';
-              // const FANPAGE_URL_FOR_APP = `twitter://app/${FANPAGE_ID}/`;
-              // const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${FANPAGE_ID}/`;
-              // Linking.canOpenURL(FANPAGE_URL_FOR_APP)
-              //   .then(supported => {
-              //     if (!supported) {
-              //       Linking.openURL(FANPAGE_URL_FOR_BROWSER);
-              //     } else {
-              //       Linking.openURL(FANPAGE_URL_FOR_APP);
-              //     }
-              //   })
-              //   .catch(err => console.error('An error occurred', err));
-              // // run your code here
+              return;
             }
->>>>>>> 0dc8e4ea6da33cc8bfc771a2024968dca31bcd6c
           }}
           style={{
             backgroundColor: '#66C3AE',
@@ -207,6 +176,7 @@ const FollowUs = () => (
         </TouchableOpacity>
       </View>
     </View>
+    <Text style={{ textAlign: 'center' }}>version 1.0.1</Text>
   </View>
 );
 

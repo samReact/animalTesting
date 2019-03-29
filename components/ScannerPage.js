@@ -1,14 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import axios from 'axios';
+import { Spinner } from 'native-base';
 import Scanner from './Scanner';
-import PermissionDenied from './PermissionDenied';
 
 export default class ScannerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasCameraPermission: false,
       product: {},
       loading: false,
     };
@@ -16,14 +15,21 @@ export default class ScannerPage extends React.Component {
 
   handleBarCodeScanned = ({ type, data }) => {
     this.setState({ loading: true });
-    axios
-      .get(`https://animal-testing.fr/api/v1/product/${data}`)
+    axios({
+      method: 'GET',
+      url: `https://animal-testing.fr/api/v1/product/${data}`,
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        UserAgent: 'Appli Animal Testing/1.0',
+        ContentType: 'application/json; charset=utf-8',
+      },
+    })
       .then(res => {
         this.setState({ loading: false, product: res.data });
       })
       .catch(err => {
         this.setState({ loading: false });
-        return console.log(err);
+        return Alert.alert('Erreur', err);
       });
   };
 
@@ -32,11 +38,19 @@ export default class ScannerPage extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Scanner
-          dataItem={product.data}
-          scan={this.handleBarCodeScanned}
-          resetData={() => this.setState({ product: {} })}
-        />
+        {loading ? (
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Spinner />
+          </View>
+        ) : (
+          <Scanner
+            dataItem={product.data}
+            scan={this.handleBarCodeScanned}
+            resetData={() => this.setState({ product: {} })}
+          />
+        )}
       </View>
     );
   }

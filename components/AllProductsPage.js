@@ -1,11 +1,19 @@
 import React from 'react';
-import { Image, FlatList, ScrollView, Modal, Alert } from 'react-native';
-import { Text, View, Icon, Content, Segment, Button } from 'native-base';
+import { FlatList, ScrollView, Modal, Alert } from 'react-native';
+import {
+  Text,
+  View,
+  Icon,
+  Content,
+  Segment,
+  Button,
+  Spinner,
+} from 'native-base';
 import { withRouter } from 'react-router-native';
 import axios from 'axios';
-
-const redCircle = require('../assets/red_circle.png');
-const greenCircle = require('../assets/green_circle.png');
+import ProductPageBis from './ProductPageBis';
+import HeaderComponent from './HeaderComponent';
+import FooterComponent from './FooterComponent';
 
 class AllProductsPage extends React.Component {
   constructor(props) {
@@ -22,10 +30,17 @@ class AllProductsPage extends React.Component {
 
   getProducts = async () => {
     const { links } = this.props;
-    await axios
-      .get(`https://animal-testing.fr/${links}`)
+    this.setState({ loading: true });
+    await axios({
+      method: 'GET',
+      url: `https://animal-testing.fr/${links}`,
+      headers: {
+        Accept: 'application/json; charset=utf-8',
+        UserAgent: 'Appli Animal Testing/1.0',
+        ContentType: 'application/json; charset=utf-8',
+      },
+    })
       .then(res => {
-        console.log(res.data.data);
         this.setState({
           loading: false,
           products: res.data.data,
@@ -42,13 +57,18 @@ class AllProductsPage extends React.Component {
     }
   };
 
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
   handleTestedProducts = () => {
     const { products } = this.state;
+    this.setState({ loading: true });
     const filteredProduct = products.filter(
       product => product.status_text !== 'Non testé sur les animaux'
     );
-    console.log(products);
     this.setState({
+      loading: false,
       filteredProduct,
       testedProducts: true,
       NonTestedProducts: false,
@@ -57,20 +77,30 @@ class AllProductsPage extends React.Component {
 
   handleNonTestedProducts = () => {
     const { products } = this.state;
+    this.setState({ loading: true });
     const filteredProduct = products.filter(
       product => product.status_text === 'Non testé sur les animaux'
     );
 
     this.setState({
+      loading: false,
       filteredProduct,
       testedProducts: false,
       NonTestedProducts: true,
     });
   };
 
-  setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
-  }
+  handleSort = () => {
+    const { filteredProduct } = this.state;
+    const sortedList = filteredProduct.sort((a, b) =>
+      a.brand_name < b.brand_name
+        ? a.brand_name.localeCompare(b.brand_name)
+        : b.brand_name.localeCompare(a.brand_name)
+    );
+    this.setState({
+      filteredProduct: sortedList,
+    });
+  };
 
   render() {
     const {
@@ -79,6 +109,7 @@ class AllProductsPage extends React.Component {
       NonTestedProducts,
       filteredProduct,
       modalVisible,
+      loading,
     } = this.state;
 
     return (
@@ -100,6 +131,7 @@ class AllProductsPage extends React.Component {
             Alert.alert('Modal has been closed.');
           }}
         >
+          <HeaderComponent />
           <Content padder style={{ flex: 1 }}>
             <View>
               <Button
@@ -107,106 +139,90 @@ class AllProductsPage extends React.Component {
                 transparent
                 onPress={() => this.setModalVisible(false)}
               >
-                <Icon name="arrow-back" />
+                <Icon
+                  name="chevron-left"
+                  style={{ color: '#000', fontSize: 45 }}
+                  type="MaterialCommunityIcons"
+                />
                 <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                  <Text>RESULTATS</Text>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: '#66C3AE',
+                      fontSize: 18,
+                    }}
+                  >
+                    RESULTATS
+                  </Text>
                   <Text>
                     {filteredProduct.length || 0} produit(s) trouvé(s)
                   </Text>
                 </View>
               </Button>
             </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <View style={{ marginLeft: -15 }}>
+                <Button icon transparent onPress={() => this.handleSort()}>
+                  <Icon name="sort-by-alpha" type="MaterialIcons" />
+                </Button>
+              </View>
 
-            <Segment style={{ marginTop: 10, marginBottom: 10 }}>
-              <Button
-                first
-                active={testedProducts}
-                onPress={() => this.handleTestedProducts()}
+              <Segment
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                  justifyContent: 'center',
+                  backgroundColor: '#fff',
+                }}
               >
-                <Text>Produits testés</Text>
-              </Button>
-              <Button
-                last
-                active={NonTestedProducts}
-                onPress={() => this.handleNonTestedProducts()}
-              >
-                <Text>Produits non-testés</Text>
-              </Button>
-            </Segment>
-            <ScrollView>
-              {products.length && (
-                <FlatList
-                  keyExtractor={item => item.product_code}
-                  data={filteredProduct}
-                  ItemSeparatorComponent={() => (
-                    <View
-                      style={{
-                        marginTop: 10,
-                        borderWidth: 0.5,
-                        borderColor: '#909090',
-                      }}
-                    />
-                  )}
-                  renderItem={({ item }) => (
-                    <View>
-                      <Text
+                <Button
+                  first
+                  active={testedProducts}
+                  onPress={() => this.handleTestedProducts()}
+                >
+                  <Text>Produits testés</Text>
+                </Button>
+                <Button
+                  last
+                  active={NonTestedProducts}
+                  onPress={() => this.handleNonTestedProducts()}
+                >
+                  <Text>Produits non-testés</Text>
+                </Button>
+              </Segment>
+            </View>
+            {loading ? (
+              <View>
+                <Spinner />
+              </View>
+            ) : (
+              <ScrollView keyboardShouldPersistTaps="handled">
+                {products.length && (
+                  <FlatList
+                    keyExtractor={item => item.product_code}
+                    data={filteredProduct}
+                    ItemSeparatorComponent={() => (
+                      <View
                         style={{
-                          fontWeight: 'bold',
-                          paddingTop: 10,
-                          paddingBottom: 10,
+                          marginTop: 10,
+                          borderWidth: 0.5,
+                          borderColor: '#909090',
                         }}
-                      >
-                        {item.product_name}
-                      </Text>
-                      <View style={{ flexDirection: 'row' }}>
-                        <Image
-                          source={{ uri: item.image_url }}
-                          style={{ width: 100, height: 130 }}
-                        />
-                        <View
-                          style={{
-                            paddingLeft: 10,
-                            justifyContent: 'space-between',
-                          }}
-                        >
-                          <Text style={{ color: '#707070' }}>
-                            {item.quantity}
-                          </Text>
-
-                          <Text style={{ color: '#707070' }}>
-                            Mise à jour le {item.update_date}
-                          </Text>
-                          <View style={{ flexDirection: 'row' }}>
-                            <Image
-                              source={{ uri: item.status_image_url }}
-                              style={{ height: 20, width: 20 }}
-                            />
-                            <Text style={{ paddingLeft: 10, color: '#707070' }}>
-                              {item.status_text}
-                            </Text>
-                          </View>
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            {item.labels_at.map((label, index) => (
-                              <Image
-                                key={index}
-                                source={{ uri: label }}
-                                style={{ height: 30, width: 30 }}
-                              />
-                            ))}
-                          </View>
-                        </View>
-                      </View>
-                    </View>
-                  )}
-                />
-              )}
-            </ScrollView>
+                      />
+                    )}
+                    renderItem={({ item }) => <ProductPageBis item={item} />}
+                  />
+                )}
+              </ScrollView>
+            )}
           </Content>
+          <FooterComponent />
         </Modal>
         <Text> Voir tous les produits crème main NON TESTÉS</Text>
       </Button>

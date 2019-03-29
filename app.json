@@ -28,8 +28,20 @@
       "supportsTablet": false,
       "infoPlist": {
         "NSCameraUsageDescription": "Le bon fonctionnement de l'application Animal Testing nécessite d'avoir un accès à votre appareil photo pour scanner les codes-barres des produits cosmétiques. Vous pouvez modifier cet autorisation dans les paramètres du téléphone, à la rubrique Applications.",
-        "LSApplicationQueriesSchemes": ["lyft", "facebook", "instagram"],
+        "LSApplicationQueriesSchemes": [
+          "fb",
+          "fbapi",
+          "fb-messenger-api",
+          "fbauth2",
+          "fbshareextension"
+          "lyft", 
+          "facebook", 
+          "instagram;
+        ]
       }
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#000"
     },
     "android": {
       "icon": "./assets/playstore-icon.png"

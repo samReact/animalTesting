@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-native';
 import Proptypes from 'prop-types';
 import * as routes from '../constant/routes';
 
-const FooterPage = props => (
+const FooterComponent = props => (
   <Footer>
     <FooterTab>
       <Button vertical onPress={() => props.history.push(routes.HOME)}>
@@ -23,8 +23,8 @@ const FooterPage = props => (
   </Footer>
 );
 
-FooterPage.propTypes = {
+FooterComponent.propTypes = {
   history: Proptypes.object.isRequired,
 };
 
-export default withRouter(FooterPage);
+export default withRouter(FooterComponent);

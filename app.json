@@ -3,6 +3,7 @@
     "name": "animalTesting",
     "slug": "animalTesting",
     "privacy": "public",
+    "scheme": "animalTesting",
     "sdkVersion": "32.0.0",
     "icon": "./assets/playstore-icon.png",
     "platforms": [
@@ -33,6 +34,9 @@
           "fb-messenger-api",
           "fbauth2",
           "fbshareextension"
+          "lyft", 
+          "facebook", 
+          "instagram;
         ]
       }
     },

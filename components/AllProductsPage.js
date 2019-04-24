@@ -73,7 +73,7 @@ class AllProductsPage extends React.Component {
     const { products } = this.state;
     this.setState({ loading: true });
     const filteredProduct = products.filter(
-      product => product.status_text !== 'Non testé sur les animaux'
+      product => product.status_tested !== '2'
     );
     this.setState({
       loading: false,
@@ -87,7 +87,7 @@ class AllProductsPage extends React.Component {
     const { products } = this.state;
     this.setState({ loading: true });
     const filteredProduct = products.filter(
-      product => product.status_text === 'Non testé sur les animaux'
+      product => product.status_tested === '2'
     );
 
     this.setState({

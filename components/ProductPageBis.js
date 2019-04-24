@@ -39,29 +39,31 @@ class ProductPageBis extends React.Component {
         >
           <Content padder style={{ flex: 1 }}>
             <View style={{ paddingTop: 10, paddingBottom: 10 }}>
-              <Button
+              <TouchableOpacity
                 iconLeft
                 transparent
                 onPress={() => this.setModalVisible(false)}
               >
-                <Icon
-                  name="chevron-left"
-                  style={{ color: '#000', fontSize: 45 }}
-                  type="MaterialCommunityIcons"
-                />
-                <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      color: '#66C3AE',
-                      fontSize: 18,
-                    }}
-                  >
-                    RETOUR
-                  </Text>
-                  <Text>1 résultat trouvé</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Icon
+                    name="chevron-left"
+                    style={{ color: '#000', fontSize: 45 }}
+                    type="MaterialCommunityIcons"
+                  />
+                  <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        color: '#66C3AE',
+                        fontSize: 18,
+                      }}
+                    >
+                      RETOUR
+                    </Text>
+                    <Text>1 résultat trouvé</Text>
+                  </View>
                 </View>
-              </Button>
+              </TouchableOpacity>
             </View>
             <ScrollView>
               <View style={{ flexDirection: 'row', padding: 10 }}>

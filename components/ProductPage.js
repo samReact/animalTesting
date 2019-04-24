@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView } from 'react-native';
+import { Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Button, Icon, Text, Content, View } from 'native-base';
 import PropTypes from 'prop-types';
 import Logo from '../assets/Logo_Animal_Testing.png';
@@ -27,21 +27,23 @@ const ProductPage = props => {
   return (
     <Content style={{ flex: 1 }}>
       <View style={{ paddingTop: 10, paddingBottom: 10 }}>
-        <Button iconLeft transparent onPress={() => resetData()}>
-          <Icon
-            name="chevron-left"
-            style={{ color: '#000', fontSize: 45 }}
-            type="MaterialCommunityIcons"
-          />
-          <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-            <Text
-              style={{ fontWeight: 'bold', color: '#66C3AE', fontSize: 18 }}
-            >
-              RETOUR
-            </Text>
-            <Text>1 résultat trouvé</Text>
+        <TouchableOpacity iconLeft transparent onPress={() => resetData()}>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon
+              name="chevron-left"
+              style={{ color: '#000', fontSize: 45 }}
+              type="MaterialCommunityIcons"
+            />
+            <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
+              <Text
+                style={{ fontWeight: 'bold', color: '#66C3AE', fontSize: 18 }}
+              >
+                RETOUR
+              </Text>
+              <Text>1 résultat trouvé</Text>
+            </View>
           </View>
-        </Button>
+        </TouchableOpacity>
       </View>
       <ScrollView>
         <View style={{ flexDirection: 'row', padding: 10 }}>

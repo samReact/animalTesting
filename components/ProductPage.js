@@ -112,7 +112,7 @@ const ProductPage = props => {
           </View>
         </View>
         {links_url ? (
-          <View style={{ backgroundColor: '#b7b7b7' }}>
+          <View>
             <AllProductsPage categories={categories} links={links_url} />
           </View>
         ) : null}

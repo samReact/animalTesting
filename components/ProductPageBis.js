@@ -178,7 +178,9 @@ class ProductPageBis extends React.Component {
               </Text>
             </View>
             <Text style={{ color: '#707070' }}>{item.quantity}</Text>
-            <Text style={{ color: '#707070' }}>{item.categories}</Text>
+            <Text style={{ color: '#707070' }}>
+              {item.categories.toUpperCase()}
+            </Text>
             <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
 
             <Text style={{ color: '#707070' }}>

@@ -115,6 +115,7 @@ class AllProductsPage extends React.Component {
       loading,
       sorted,
     } = this.state;
+    const { categories } = this.props;
 
     return (
       <Button
@@ -233,7 +234,7 @@ class AllProductsPage extends React.Component {
           </Content>
           <FooterComponent />
         </Modal>
-        <Text> Voir tous les produits crème main NON TESTÉS</Text>
+        <Text> Voir tous les produits {categories} NON TESTÉS</Text>
       </Button>
     );
   }
@@ -241,6 +242,7 @@ class AllProductsPage extends React.Component {
 
 AllProductsPage.propTypes = {
   links: PropTypes.string.isRequired,
+  categories: PropTypes.string.isRequired,
 };
 
 export default withRouter(AllProductsPage);

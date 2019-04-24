@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, ScrollView } from 'react-native';
-import { Button, Icon, Text, Content, View, H3 } from 'native-base';
+import { Button, Icon, Text, Content, View } from 'native-base';
 import PropTypes from 'prop-types';
 import Logo from '../assets/Logo_Animal_Testing.png';
 import AllProductsPage from './AllProductsPage';
@@ -113,7 +113,7 @@ const ProductPage = props => {
         </View>
         {links_url ? (
           <View style={{ backgroundColor: '#b7b7b7' }}>
-            <AllProductsPage links={links_url} />
+            <AllProductsPage categories={categories} links={links_url} />
           </View>
         ) : null}
         <View style={{ padding: 10 }}>

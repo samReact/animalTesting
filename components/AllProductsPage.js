@@ -1,5 +1,11 @@
 import React from 'react';
-import { FlatList, ScrollView, Modal, Alert } from 'react-native';
+import {
+  FlatList,
+  ScrollView,
+  Modal,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import {
   Text,
   View,
@@ -51,7 +57,7 @@ class AllProductsPage extends React.Component {
       })
       .catch(() => {
         this.setState({ loading: false });
-        return Alert.alert('Erreur', 'Produit non trouvé');
+        return Alert.alert('Erreur', 'Aucun produit trouvé');
       });
     const { products } = this.state;
     if (products.length) {
@@ -115,6 +121,7 @@ class AllProductsPage extends React.Component {
       loading,
       sorted,
     } = this.state;
+    const { categories } = this.props;
 
     return (
       <Button
@@ -137,12 +144,12 @@ class AllProductsPage extends React.Component {
         >
           <HeaderComponent />
           <Content padder style={{ flex: 1 }}>
-            <View>
-              <Button
-                iconLeft
-                transparent
-                onPress={() => this.setModalVisible(false)}
-              >
+            <TouchableOpacity
+              iconLeft
+              transparent
+              onPress={() => this.setModalVisible(false)}
+            >
+              <View style={{ flexDirection: 'row' }}>
                 <Icon
                   name="chevron-left"
                   style={{ color: '#000', fontSize: 45 }}
@@ -162,8 +169,8 @@ class AllProductsPage extends React.Component {
                     {filteredProduct.length || 0} produit(s) trouvé(s)
                   </Text>
                 </View>
-              </Button>
-            </View>
+              </View>
+            </TouchableOpacity>
             <View
               style={{
                 flex: 1,
@@ -233,7 +240,10 @@ class AllProductsPage extends React.Component {
           </Content>
           <FooterComponent />
         </Modal>
-        <Text> Voir tous les produits crème main NON TESTÉS</Text>
+        <Text style={{ textAlign: 'center' }}>
+          {' '}
+          Voir tous les produits {categories} NON TESTÉS
+        </Text>
       </Button>
     );
   }
@@ -241,6 +251,7 @@ class AllProductsPage extends React.Component {
 
 AllProductsPage.propTypes = {
   links: PropTypes.string.isRequired,
+  categories: PropTypes.string.isRequired,
 };
 
 export default withRouter(AllProductsPage);

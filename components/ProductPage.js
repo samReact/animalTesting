@@ -1,10 +1,11 @@
 import React from 'react';
 import { Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Button, Icon, Text, Content, View } from 'native-base';
+import { Icon, Text, Content, View } from 'native-base';
 import PropTypes from 'prop-types';
 import Logo from '../assets/Logo_Animal_Testing.png';
 import AllProductsPage from './AllProductsPage';
 import ImageModal from './ImageModal';
+import ReportingModal from './ReportingModal';
 
 const ProductPage = props => {
   const { dataItem, resetData } = props;
@@ -107,10 +108,7 @@ const ProductPage = props => {
               alignItems: 'flex-end',
             }}
           >
-            <Image
-              source={{ uri: alert_image_url }}
-              style={{ height: 40, width: 40, marginRight: 20 }}
-            />
+            <ReportingModal icon={alert_image_url} />
           </View>
         </View>
         {links_url ? (

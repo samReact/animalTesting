@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { Text, View, Content, Button, Icon } from 'native-base';
+import { Text, View, Content, Icon } from 'native-base';
 import PropTypes from 'prop-types';
 import Logo from '../assets/Logo_Animal_Testing.png';
 import ImageModal from './ImageModal';
+import ReportingModal from './ReportingModal';
 
 class ProductPageBis extends React.Component {
   constructor(props) {
@@ -128,10 +129,7 @@ class ProductPageBis extends React.Component {
                     alignItems: 'flex-end',
                   }}
                 >
-                  <Image
-                    source={{ uri: item.alert_image_url }}
-                    style={{ height: 40, width: 40, marginRight: 20 }}
-                  />
+                  <ReportingModal icon={item.alert_image_url} />
                 </View>
               </View>
 

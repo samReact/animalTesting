@@ -5,6 +5,7 @@ import {
   Modal,
   Alert,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {
   Text,
@@ -21,6 +22,9 @@ import axios from 'axios';
 import ProductPageBis from './ProductPageBis';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+
+const az = require('../assets/tri_a-z.png');
+const za = require('../assets/tri_z-a.png');
 
 class AllProductsPage extends React.Component {
   constructor(props) {
@@ -181,11 +185,15 @@ class AllProductsPage extends React.Component {
             >
               {filteredProduct.length > 1 && (
                 <View style={{ marginLeft: -15, marginRight: 5 }}>
-                  <Button transparent onPress={() => this.handleSort()}>
-                    <Text style={{ fontSize: 20 }}>
-                      {sorted ? 'Z A' : 'A Z'}
-                    </Text>
-                  </Button>
+                  <TouchableOpacity
+                    transparent
+                    onPress={() => this.handleSort()}
+                  >
+                    <Image
+                      source={sorted ? az : za}
+                      style={{ width: 30, height: 30 }}
+                    />
+                  </TouchableOpacity>
                 </View>
               )}
 
@@ -198,14 +206,14 @@ class AllProductsPage extends React.Component {
                 }}
               >
                 <Button
-                  last
+                  first
                   active={NonTestedProducts}
                   onPress={() => this.handleNonTestedProducts()}
                 >
                   <Text>Produits non-testés</Text>
                 </Button>
                 <Button
-                  first
+                  last
                   active={testedProducts}
                   onPress={() => this.handleTestedProducts()}
                 >
@@ -242,7 +250,7 @@ class AllProductsPage extends React.Component {
         </Modal>
         <Text style={{ textAlign: 'center' }}>
           {' '}
-          Voir tous les produits {categories} NON TESTÉS
+          Voir tous les produits {categories.toUpperCase()} non testés
         </Text>
       </Button>
     );

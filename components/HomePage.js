@@ -1,14 +1,19 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { ImageBackground } from 'react-native';
+import { Text, View, H2 } from 'native-base';
 
 const womenPic = require('../assets/woman-comparing-prices-smartphone-drugstore-youn-her-department-supermarket-47155866.jpg');
 
 const HomePage = () => (
-  <Image
+  <ImageBackground
     resizeMode="cover"
     style={{ width: '100%', height: '100%' }}
     source={womenPic}
-  />
+  >
+    <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+      <H2 style={{ marginBottom: 20 }}>Bienvenue !</H2>
+    </View>
+  </ImageBackground>
 );
 
 export default HomePage;

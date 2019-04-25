@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, TouchableOpacity, Platform } from 'react-native';
+import { Linking, TouchableOpacity, Platform, Alert } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 
@@ -83,7 +83,6 @@ const FollowUs = () => (
                 .catch(err => console.error('An error occurred', err));
               // run your code here
             } else if (Platform.OS === 'ios') {
-              return;
             }
           }}
           style={{
@@ -177,6 +176,11 @@ const FollowUs = () => (
       </View>
     </View>
     <Text style={{ textAlign: 'center' }}>version 1.0.1</Text>
+    <TouchableOpacity
+      onPress={() => Linking.openURL('https://fr.openbeautyfacts.org/')}
+    >
+      <Text style={{ textAlign: 'center' }}>Powered by OpenBeautyFacts</Text>
+    </TouchableOpacity>
   </View>
 );
 

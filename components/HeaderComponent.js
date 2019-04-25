@@ -13,7 +13,7 @@ const HeaderComponent = () => (
         source={logoWhite}
       />
     </Left>
-    <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
+    <Body style={{ justifyContent: 'center', alignItems: 'center', flex: 2 }}>
       <Title>Animal Testing</Title>
     </Body>
     <Right />

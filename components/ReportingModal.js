@@ -43,7 +43,6 @@ class ReportingModal extends Component {
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: '#000',
             }}
           >
             <TouchableOpacity
@@ -53,11 +52,6 @@ class ReportingModal extends Component {
             >
               <Text>Page de signalement</Text>
             </TouchableOpacity>
-            <Image
-              resizeMode="contain"
-              style={{ width: 350, height: 350 }}
-              source={logoWhite}
-            />
           </View>
         </Modal>
         <Image

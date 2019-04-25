@@ -9,6 +9,8 @@ import {
   View,
 } from 'react-native';
 
+const logoWhite = require('../assets/Logo_Animal_Testing_V2.png');
+
 class ReportingModal extends Component {
   state = {
     modalVisible: false,
@@ -37,7 +39,12 @@ class ReportingModal extends Component {
           }}
         >
           <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#000',
+            }}
           >
             <TouchableOpacity
               onPress={() => {
@@ -46,6 +53,11 @@ class ReportingModal extends Component {
             >
               <Text>Page de signalement</Text>
             </TouchableOpacity>
+            <Image
+              resizeMode="contain"
+              style={{ width: 350, height: 350 }}
+              source={logoWhite}
+            />
           </View>
         </Modal>
         <Image

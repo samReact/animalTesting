@@ -173,14 +173,12 @@ class ProductPageBis extends React.Component {
                 source={{ uri: item.status_image_url }}
                 style={{ height: 20, width: 20 }}
               />
-              <Text style={{ flex: 1, paddingLeft: 10, color: '#707070' }}>
+              <Text style={{ paddingLeft: 10, color: '#707070' }}>
                 {item.status_text}
               </Text>
             </View>
             <Text style={{ color: '#707070' }}>{item.quantity}</Text>
-            <Text style={{ color: '#707070' }}>
-              {item.categories.toUpperCase()}
-            </Text>
+            <Text style={{ color: '#707070' }}>{item.categories}</Text>
             <Text style={{ color: '#707070' }}>{item.product_infos}</Text>
 
             <Text style={{ color: '#707070' }}>

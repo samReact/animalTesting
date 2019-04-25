@@ -2,12 +2,16 @@ import React from 'react';
 import { Image } from 'react-native';
 import { Header, Left, Body, Right, Title } from 'native-base';
 
-const logoWhite = require('../assets/Logo_Animal_Testing_White.png');
+const logoWhite = require('../assets/Logo_Animal_Testing_V2.png');
 
 const HeaderComponent = () => (
   <Header>
     <Left>
-      <Image style={{ width: 40, height: 40 }} source={logoWhite} />
+      <Image
+        resizeMode="contain"
+        style={{ width: 40, height: 40 }}
+        source={logoWhite}
+      />
     </Left>
     <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
       <Title>Animal Testing</Title>

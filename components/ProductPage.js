@@ -129,7 +129,7 @@ const ProductPage = props => {
               COMMENTAIRE SUR LA MARQUE
             </Text>
           </View>
-          <Text>{comment_at}</Text>
+          <Text style={{ textAlign: 'justify' }}>{comment_at}</Text>
         </View>
       </ScrollView>
     </Content>

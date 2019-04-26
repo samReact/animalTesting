@@ -61,7 +61,12 @@ class AllProductsPage extends React.Component {
       })
       .catch(() => {
         this.setState({ loading: false });
-        return Alert.alert('Erreur', 'Aucun produit trouvé');
+        return Alert.alert('Erreur', 'Aucun produit trouvé', [
+          {
+            text: 'OK',
+            onPress: () => this.setModalVisible(false),
+          },
+        ]);
       });
     const { products } = this.state;
     if (products.length) {
@@ -148,43 +153,42 @@ class AllProductsPage extends React.Component {
         >
           <HeaderComponent />
           <Content padder style={{ flex: 1 }}>
-            <TouchableOpacity
-              iconLeft
-              transparent
-              onPress={() => this.setModalVisible(false)}
-            >
-              <View style={{ flexDirection: 'row' }}>
-                <Icon
-                  name="chevron-left"
-                  style={{ color: '#000', fontSize: 45 }}
-                  type="MaterialCommunityIcons"
-                />
-                <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      color: '#66C3AE',
-                      fontSize: 18,
-                    }}
-                  >
-                    RESULTATS
-                  </Text>
-                  <Text>
-                    {filteredProduct.length || 0} produit(s) trouvé(s)
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
             <View
               style={{
-                flex: 1,
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
               }}
             >
+              <TouchableOpacity
+                iconLeft
+                transparent
+                onPress={() => this.setModalVisible(false)}
+              >
+                <View style={{ flexDirection: 'row' }}>
+                  <Icon
+                    name="chevron-left"
+                    style={{ color: '#000', fontSize: 45 }}
+                    type="MaterialCommunityIcons"
+                  />
+                  <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        color: '#66C3AE',
+                        fontSize: 18,
+                      }}
+                    >
+                      RESULTATS
+                    </Text>
+                    <Text>
+                      {filteredProduct.length || 0} produit(s) trouvé(s)
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
               {filteredProduct.length > 1 && (
-                <View style={{ marginLeft: -15, marginRight: 5 }}>
+                <View style={{ marginRight: 25 }}>
                   <TouchableOpacity
                     transparent
                     onPress={() => this.handleSort()}
@@ -196,31 +200,30 @@ class AllProductsPage extends React.Component {
                   </TouchableOpacity>
                 </View>
               )}
-
-              <Segment
-                style={{
-                  marginTop: 10,
-                  marginBottom: 10,
-                  justifyContent: 'center',
-                  backgroundColor: '#fff',
-                }}
-              >
-                <Button
-                  first
-                  active={NonTestedProducts}
-                  onPress={() => this.handleNonTestedProducts()}
-                >
-                  <Text>Produits non-testés</Text>
-                </Button>
-                <Button
-                  last
-                  active={testedProducts}
-                  onPress={() => this.handleTestedProducts()}
-                >
-                  <Text>Produits testés</Text>
-                </Button>
-              </Segment>
             </View>
+            <Segment
+              style={{
+                marginTop: 10,
+                marginBottom: 10,
+                justifyContent: 'center',
+                backgroundColor: '#fff',
+              }}
+            >
+              <Button
+                first
+                active={NonTestedProducts}
+                onPress={() => this.handleNonTestedProducts()}
+              >
+                <Text>Produits non-testés</Text>
+              </Button>
+              <Button
+                last
+                active={testedProducts}
+                onPress={() => this.handleTestedProducts()}
+              >
+                <Text>Produits testés</Text>
+              </Button>
+            </Segment>
             {loading ? (
               <View>
                 <Spinner />

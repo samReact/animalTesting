@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageBackground } from 'react-native';
 import { Text, View, H2 } from 'native-base';
 
-const womenPic = require('../assets/image_accueil1.jpg');
+const womenPic = require('../assets/image_accueil.jpg');
 
 const HomePage = () => (
   <ImageBackground

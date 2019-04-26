@@ -86,7 +86,7 @@ const ProductPage = props => {
             alignItems: 'center',
           }}
         >
-          {labels_at !== 'one-voice' ? (
+          {labels_at ? (
             <View
               style={{
                 flexDirection: 'row',

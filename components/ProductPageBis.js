@@ -113,7 +113,7 @@ class ProductPageBis extends React.Component {
                     alignItems: 'center',
                   }}
                 >
-                  {item.labels_at !== 'one-voice' ? (
+                  {item.labels_at ? (
                     <View
                       style={{
                         flexDirection: 'row',

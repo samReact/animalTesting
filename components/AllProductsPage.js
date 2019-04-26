@@ -61,7 +61,12 @@ class AllProductsPage extends React.Component {
       })
       .catch(() => {
         this.setState({ loading: false });
-        return Alert.alert('Erreur', 'Aucun produit trouvé');
+        return Alert.alert('Erreur', 'Aucun produit trouvé', [
+          {
+            text: 'OK',
+            onPress: () => this.setModalVisible(false),
+          },
+        ]);
       });
     const { products } = this.state;
     if (products.length) {

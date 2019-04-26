@@ -17,7 +17,7 @@ export default class ScannerPage extends React.Component {
     this.setState({ loading: true });
     axios({
       method: 'GET',
-      url: `https://animal-testing.fr/api/v1/product/${data}`,
+      url: `https://animaltesting.fr/api/v1/product/${data}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
         UserAgent: 'Appli Animal Testing/1.0',

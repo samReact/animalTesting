@@ -190,7 +190,7 @@ class AllProductsPage extends React.Component {
                     onPress={() => this.handleSort()}
                   >
                     <Image
-                      source={sorted ? az : za}
+                      source={sorted ? za : az}
                       style={{ width: 30, height: 30 }}
                     />
                   </TouchableOpacity>

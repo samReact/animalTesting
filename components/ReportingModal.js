@@ -8,6 +8,8 @@ import {
   Text,
   View,
 } from 'react-native';
+import HeaderComponent from './HeaderComponent';
+import FooterComponent from './FooterComponent';
 
 const logoWhite = require('../assets/Logo_Animal_Testing_V2.png');
 
@@ -38,6 +40,7 @@ class ReportingModal extends Component {
             Alert.alert('Modal has been closed.');
           }}
         >
+          <HeaderComponent />
           <View
             style={{
               flex: 1,
@@ -53,6 +56,7 @@ class ReportingModal extends Component {
               <Text>Page de signalement</Text>
             </TouchableOpacity>
           </View>
+          <FooterComponent />
         </Modal>
         <Image
           source={{ uri: icon }}

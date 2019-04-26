@@ -179,7 +179,15 @@ const FollowUs = () => (
     <TouchableOpacity
       onPress={() => Linking.openURL('https://fr.openbeautyfacts.org/')}
     >
-      <Text style={{ textAlign: 'center' }}>Powered by OpenBeautyFacts</Text>
+      <Text
+        style={{
+          textAlign: 'center',
+          textDecorationLine: 'underline',
+          paddingBottom: 10,
+        }}
+      >
+        Powered by OpenBeautyFacts
+      </Text>
     </TouchableOpacity>
   </View>
 );

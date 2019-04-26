@@ -71,7 +71,7 @@ class ProductPageBis extends React.Component {
                 </TouchableOpacity>
               </View>
               <ScrollView>
-                <View style={{ flexDirection: 'row', padding: 10 }}>
+                <View style={{ flexDirection: 'row' }}>
                   <ImageModal uri={item.image_url} />
                   <View
                     style={{
@@ -138,14 +138,13 @@ class ProductPageBis extends React.Component {
                     <ReportingModal icon={item.alert_image_url} />
                   </View>
                 </View>
-
-                <View style={{ padding: 10 }}>
+                <View>
                   <View style={{ flexDirection: 'row' }}>
                     <Image style={{ width: 40, height: 40 }} source={Logo} />
                     <Text
                       style={{
                         fontWeight: 'bold',
-                        fontSize: 20,
+                        fontSize: 18,
                         paddingLeft: 10,
                       }}
                     >

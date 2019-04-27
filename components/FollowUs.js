@@ -175,7 +175,7 @@ const FollowUs = () => (
         </TouchableOpacity>
       </View>
     </View>
-    <Text style={{ textAlign: 'center' }}>version 1.0.1</Text>
+    <Text style={{ textAlign: 'center' }}>version 1.0.3</Text>
     <TouchableOpacity
       onPress={() => Linking.openURL('https://fr.openbeautyfacts.org/')}
     >

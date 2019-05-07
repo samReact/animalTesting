@@ -45,11 +45,11 @@ class AllProductsPage extends React.Component {
     this.setState({ loading: true });
     await axios({
       method: 'GET',
-      url: `https://animal-testing.fr/${links}`,
+      url: `https://animaltesting.fr/${links}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
-        UserAgent: 'Appli Animal Testing/1.0',
-        ContentType: 'application/json; charset=utf-8',
+        'User-Agent': 'Appli Animal Testing/1.0',
+        'Content-Type': 'application/json; charset=utf-8',
       },
     })
       .then(res => {

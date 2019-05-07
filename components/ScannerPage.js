@@ -14,22 +14,53 @@ export default class ScannerPage extends React.Component {
   }
 
   handleBarCodeScanned = ({ data }) => {
+    console.log(data);
     this.setState({ loading: true });
     axios({
       method: 'GET',
       url: `https://animaltesting.fr/api/v1/product/${data}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
-        UserAgent: 'Appli Animal Testing/1.0',
-        ContentType: 'application/json; charset=utf-8',
+        'User-Agent': 'Appli Animal Testing/1.0',
+        'Content-Type': 'application/json; charset=utf-8',
       },
     })
       .then(res => {
         this.setState({ loading: false, product: res.data });
       })
-      .catch(err => {
-        this.setState({ loading: false });
-        return Alert.alert('Erreur', err);
+      .catch(error => {
+        console.log(error.response.status);
+        // return Alert.alert('Erreur', err);
+        if (error.response.status === 404) {
+          return Alert.alert('Erreur', 'Aucun produit trouvé', [
+            {
+              text: 'OK',
+              onPress: () => this.setState({ loading: false }),
+            },
+          ]);
+        }
+        if (error.response.status === 415) {
+          return Alert.alert(
+            'Erreur',
+            "Ce type de média n'est pas pris en charge",
+            [
+              {
+                text: 'OK',
+                onPress: () => this.setState({ loading: false }),
+              },
+            ]
+          );
+        }
+        return Alert.alert(
+          'Erreur',
+          'Une erreur est survenu, veuillez réessayer plus tard.',
+          [
+            {
+              text: 'OK',
+              onPress: () => this.setState({ loading: false }),
+            },
+          ]
+        );
       });
   };
 

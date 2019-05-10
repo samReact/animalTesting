@@ -37,7 +37,7 @@ class ProductPageBis extends React.Component {
           transparent={false}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            this.setModalVisible(false);
           }}
         >
           <Container>
@@ -85,7 +85,9 @@ class ProductPageBis extends React.Component {
                         fontWeight: 'bold',
                       }}
                     >
-                      {item.brand_name} - {item.product_name}
+                      {item.brand_name}{' '}
+                      {item.brand_name && item.product_name ? '-' : ''}{' '}
+                      {item.product_name}
                     </Text>
                     <View style={{ flexDirection: 'row' }}>
                       <Image
@@ -165,7 +167,8 @@ class ProductPageBis extends React.Component {
             paddingBottom: 10,
           }}
         >
-          {item.brand_name} - {item.product_name}
+          {item.brand_name} {item.brand_name && item.product_name ? '-' : ''}{' '}
+          {item.product_name}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <ImageModal uri={item.image_url} />

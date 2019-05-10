@@ -26,7 +26,7 @@ class ImageModal extends Component {
           transparent={false}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            this.setModalVisible(false);
           }}
         >
           <TouchableOpacity

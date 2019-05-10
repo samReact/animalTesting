@@ -148,7 +148,7 @@ class AllProductsPage extends React.Component {
           transparent={false}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            this.setModalVisible(false);
           }}
         >
           <HeaderComponent />

@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import {
   Modal,
   TouchableOpacity,
-  Alert,
   Image,
   Text,
   View,
+  WebView,
+  Dimensions,
 } from 'react-native';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+import { Content } from 'native-base';
 
-const logoWhite = require('../assets/Logo_Animal_Testing_V2.png');
+const { height, width } = Dimensions.get('window');
 
 class ReportingModal extends Component {
   state = {
@@ -24,7 +26,7 @@ class ReportingModal extends Component {
 
   render() {
     const { modalVisible } = this.state;
-    const { icon } = this.props;
+    const { icon, url } = this.props;
 
     return (
       <TouchableOpacity
@@ -37,25 +39,16 @@ class ReportingModal extends Component {
           transparent={false}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            this.setModalVisible(false);
           }}
         >
           <HeaderComponent />
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                this.setModalVisible(false);
-              }}
-            >
-              <Text>Page de signalement</Text>
-            </TouchableOpacity>
-          </View>
+          <WebView
+            source={{ uri: url }}
+            style={{ width, height }}
+            javaScriptEnabled
+            scrollEnabled="false"
+          />
           <FooterComponent />
         </Modal>
         <Image

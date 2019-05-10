@@ -21,10 +21,10 @@ const ProductPage = props => {
     update_date,
     comment_at,
     alert_image_url,
+    alert_url,
     links_url,
     categories,
   } = dataItem[0];
-
   return (
     <Content style={{ flex: 1 }}>
       <View style={{ paddingTop: 10, paddingBottom: 10 }}>
@@ -61,7 +61,8 @@ const ProductPage = props => {
                 fontWeight: 'bold',
               }}
             >
-              {brand_name} - {product_name}
+              {brand_name} {brand_name && product_name ? '-' : ''}{' '}
+              {product_name}
             </Text>
             <View style={{ flexDirection: 'row' }}>
               <Image
@@ -108,7 +109,7 @@ const ProductPage = props => {
               alignItems: 'flex-end',
             }}
           >
-            <ReportingModal icon={alert_image_url} />
+            <ReportingModal icon={alert_image_url} url={alert_url} />
           </View>
         </View>
         {links_url ? (

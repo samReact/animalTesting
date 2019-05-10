@@ -6,11 +6,8 @@
     "scheme": "animalTesting",
     "sdkVersion": "32.0.0",
     "icon": "./assets/animal-testing-icon_512x512.png",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "version": "1.0.4",
+    "platforms": ["ios", "android"],
+    "version": "1.0.5",
     "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,15 +16,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.animaltesting.animaltesting",
-      "icon": "./assets/ItunesArtwork@2x.png",
+      "bundleIdentifier": "fr.animaltesting.ios",
+      "icon": "./assets/animal-testing-icon_1024x1024.png",
       "supportsTablet": false,
       "infoPlist": {
-        "NSCameraUsageDescription": "Le bon fonctionnement de l'application Animal Testing nécessite d'avoir un accès à votre appareil photo pour scanner les codes-barres des produits cosmétiques. Vous pouvez modifier cet autorisation dans les paramètres du téléphone, à la rubrique Applications.",
+        "NSCameraUsageDescription": "L'accès à votre appareil photo est nécessaire pour scanner les codes-barres des produits. Vous pouvez modifier cette autorisation dans les paramètres du téléphone, à la rubrique Applications.",
         "LSApplicationQueriesSchemes": [
           "fb",
           "fbapi",
@@ -43,9 +38,10 @@
       "backgroundColor": "#000"
     },
     "android": {
-      "package": "com.animaltesting.animaltesting",
+      "package": "fr.animaltesting.android",
       "adaptiveIcon": {
-        "backgroundImage": "./assets/animal-testing-icon_512x512.png"
+        "foregroundImage": "./assets/animaltesting_foreground_512x512.png",
+        "backgroundColor": "#000000"
       }
     },
     "description": "Animal Testing App project."

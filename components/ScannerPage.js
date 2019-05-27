@@ -4,17 +4,28 @@ import axios from 'axios';
 import { Spinner } from 'native-base';
 import Scanner from './Scanner';
 
+const { CancelToken } = axios;
+const source = CancelToken.source();
+
 export default class ScannerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: {},
       loading: false,
+      scanned: false,
     };
   }
 
-  handleBarCodeScanned = ({ data }) => {
-    this.setState({ loading: true });
+  handleBarCodeScanned = async ({ data }) => {
+    const { scanned, loading } = this.state;
+    await this.setState({ loading: true });
+
+    setTimeout(() => {
+      if (!scanned && loading) {
+        source.cancel();
+      }
+    }, 10000);
     axios({
       method: 'GET',
       url: `https://animaltesting.fr/api/v1/product/${data}`,
@@ -23,16 +34,25 @@ export default class ScannerPage extends React.Component {
         'User-Agent': 'Appli Animal Testing/1.0',
         'Content-Type': 'application/json; charset=utf-8',
       },
+      cancelToken: source.token,
     })
       .then(res => {
-        this.setState({ loading: false, product: res.data });
+        this.setState({ loading: false, product: res.data, scanned: true });
       })
       .catch(error => {
+        if (axios.isCancel()) {
+          return Alert.alert('Erreur', 'Erreur technique', [
+            {
+              text: 'OK',
+              onPress: () => this.setState({ loading: false, scanned: true }),
+            },
+          ]);
+        }
         if (error.response.status === 403) {
           return Alert.alert('Erreur', 'Accès interdit', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false }),
+              onPress: () => this.setState({ loading: false, scanned: true }),
             },
           ]);
         }
@@ -40,7 +60,7 @@ export default class ScannerPage extends React.Component {
           return Alert.alert('Erreur', 'Aucun produit trouvé', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false }),
+              onPress: () => this.setState({ loading: false, scanned: true }),
             },
           ]);
         }
@@ -48,7 +68,7 @@ export default class ScannerPage extends React.Component {
           return Alert.alert('Erreur', 'Erreur du champs Accept', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false }),
+              onPress: () => this.setState({ loading: false, scanned: true }),
             },
           ]);
         }
@@ -59,7 +79,7 @@ export default class ScannerPage extends React.Component {
             [
               {
                 text: 'OK',
-                onPress: () => this.setState({ loading: false }),
+                onPress: () => this.setState({ loading: false, scanned: true }),
               },
             ]
           );
@@ -71,7 +91,7 @@ export default class ScannerPage extends React.Component {
             [
               {
                 text: 'OK',
-                onPress: () => this.setState({ loading: false }),
+                onPress: () => this.setState({ loading: false, scanned: true }),
               },
             ]
           );
@@ -82,7 +102,7 @@ export default class ScannerPage extends React.Component {
           [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false }),
+              onPress: () => this.setState({ loading: false, scanned: true }),
             },
           ]
         );
@@ -90,7 +110,7 @@ export default class ScannerPage extends React.Component {
   };
 
   render() {
-    const { loading, product } = this.state;
+    const { loading, product, scanned } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
@@ -105,6 +125,8 @@ export default class ScannerPage extends React.Component {
             dataItem={product.data}
             scan={this.handleBarCodeScanned}
             resetData={() => this.setState({ product: {} })}
+            scanned={scanned}
+            resetScan={() => this.setState({ scanned: false })}
           />
         )}
       </View>

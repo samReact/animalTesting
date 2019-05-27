@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
-import { View, Button, Text } from 'native-base';
+import { View, Button, Text, H2 } from 'native-base';
 import { BarCodeScanner } from 'expo';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ProductPage from './ProductPage';
+
+const barcode = require('../assets/barcode.png');
 
 const Scanner = ({ scan, dataItem, resetData, scanned, resetScan }) => (
   <View style={{ flex: 1 }}>
@@ -15,29 +17,41 @@ const Scanner = ({ scan, dataItem, resetData, scanned, resetScan }) => (
           style={{
             zIndex: 100,
             flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
           }}
         >
           <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            {/* <View
+              style={{
+                width: '80%',
+                height: '50%',
+                borderColor: 'green',
+                borderWidth: 5,
+              }}
+            /> */}
+            <Image source={barcode} />
+          </View>
+          {scanned && (
+            <Button onPress={() => resetScan()} style={{ alignSelf: 'center' }}>
+              <Text>Nouveau Scan</Text>
+            </Button>
+          )}
+          <View
             style={{
-              width: '80%',
-              height: '50%',
-              borderColor: 'green',
-              borderWidth: 5,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              alignItems: 'center',
             }}
-          />
+          >
+            <H2 style={{ color: '#fff' }}>Scannez le code-barre</H2>
+            <H2 style={{ color: '#fff' }}>d&39;un produit cosmétique</H2>
+          </View>
         </View>
         <BarCodeScanner
           barCodeTypes={['ean13', 'ean8', 'code128']}
           onBarCodeScanned={scanned ? undefined : scan}
           style={StyleSheet.absoluteFillObject}
         />
-        {scanned && (
-          <Button onPress={() => resetScan()} style={{ alignSelf: 'center' }}>
-            <Text>Nouveau Scan</Text>
-          </Button>
-        )}
       </Fragment>
     )}
   </View>

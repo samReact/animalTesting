@@ -19,6 +19,7 @@ import {
 import { withRouter } from 'react-router-native';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Constants } from 'expo';
 import ProductPageBis from './ProductPageBis';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
@@ -46,6 +47,7 @@ class AllProductsPage extends React.Component {
   getProducts = async () => {
     const { links } = this.props;
     const { loading } = this.state;
+    const { manifest } = Constants;
     this.setState({ loading: true });
     setTimeout(() => {
       if (loading) {
@@ -57,7 +59,7 @@ class AllProductsPage extends React.Component {
       url: `https://animaltesting.fr/${links}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
-        'User-Agent': 'Appli Animal Testing/1.0',
+        'User-Agent': `Appli Animal Testing/${manifest.version}`,
         'Content-Type': 'application/json; charset=utf-8',
       },
       cancelToken: source.token,

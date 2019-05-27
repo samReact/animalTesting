@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import axios from 'axios';
 import { Spinner } from 'native-base';
+import { Constants } from 'expo';
 import Scanner from './Scanner';
 
 const { CancelToken } = axios;
@@ -19,6 +20,7 @@ export default class ScannerPage extends React.Component {
 
   handleBarCodeScanned = async ({ data }) => {
     const { scanned, loading } = this.state;
+    const { manifest } = Constants;
     await this.setState({ loading: true });
 
     setTimeout(() => {
@@ -31,7 +33,7 @@ export default class ScannerPage extends React.Component {
       url: `https://animaltesting.fr/api/v1/product/${data}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
-        'User-Agent': 'Appli Animal Testing/1.0',
+        'User-Agent': `Appli Animal Testing/${manifest.version}`,
         'Content-Type': 'application/json; charset=utf-8',
       },
       cancelToken: source.token,

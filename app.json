@@ -38,6 +38,7 @@
       "backgroundColor": "#000"
     },
     "android": {
+      "versionCode": 1,
       "package": "fr.animaltesting.android",
       "adaptiveIcon": {
         "foregroundImage": "./assets/animaltesting_foreground_512x512.png",

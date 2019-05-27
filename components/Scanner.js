@@ -29,7 +29,7 @@ const Scanner = ({ scan, dataItem, resetData }) => (
           />
         </View>
         <BarCodeScanner
-          barCodeTypes={['ean13', 'ean8']}
+          barCodeTypes={['ean13', 'ean8', 'code128']}
           onBarCodeScanned={scan}
           style={StyleSheet.absoluteFill}
         />

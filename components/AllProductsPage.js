@@ -19,9 +19,13 @@ import {
 import { withRouter } from 'react-router-native';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Constants } from 'expo';
 import ProductPageBis from './ProductPageBis';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+
+const { CancelToken } = axios;
+const source = CancelToken.source();
 
 const az = require('../assets/tri_a-z.png');
 const za = require('../assets/tri_z-a.png');
@@ -42,15 +46,23 @@ class AllProductsPage extends React.Component {
 
   getProducts = async () => {
     const { links } = this.props;
+    const { loading } = this.state;
+    const { manifest } = Constants;
     this.setState({ loading: true });
+    setTimeout(() => {
+      if (loading) {
+        source.cancel();
+      }
+    }, 10000);
     await axios({
       method: 'GET',
       url: `https://animaltesting.fr/${links}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
-        'User-Agent': 'Appli Animal Testing/1.0',
+        'User-Agent': `Appli Animal Testing/${manifest.version}`,
         'Content-Type': 'application/json; charset=utf-8',
       },
+      cancelToken: source.token,
     })
       .then(res => {
         this.setState({
@@ -59,8 +71,20 @@ class AllProductsPage extends React.Component {
           filteredProduct: res.data.data,
         });
       })
-      .catch(() => {
+      .catch(error => {
         this.setState({ loading: false });
+        if (error.response.status === 500 || error.response.status === 503) {
+          return Alert.alert(
+            'Erreur',
+            'Une erreur est survenue, veuillez réessayer ultérieurement.',
+            [
+              {
+                text: 'OK',
+                onPress: () => this.setModalVisible(false),
+              },
+            ]
+          );
+        }
         return Alert.alert('Erreur', 'Aucun produit trouvé', [
           {
             text: 'OK',

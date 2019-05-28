@@ -6,6 +6,7 @@ import Logo from '../assets/Logo_Animal_Testing.png';
 import AllProductsPage from './AllProductsPage';
 import ImageModal from './ImageModal';
 import ReportingModal from './ReportingModal';
+import LabelModal from './LabelModal';
 
 const ProductPage = props => {
   const { dataItem, resetData } = props;
@@ -95,9 +96,9 @@ const ProductPage = props => {
               }}
             >
               {labels_at.slice(0, 5).map((label, index) => (
-                <Image
+                <LabelModal
                   key={index}
-                  source={{ uri: label }}
+                  uri={label}
                   style={{ height: 40, width: 40, marginRight: 20 }}
                 />
               ))}

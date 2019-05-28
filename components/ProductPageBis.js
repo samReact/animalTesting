@@ -7,6 +7,7 @@ import ImageModal from './ImageModal';
 import ReportingModal from './ReportingModal';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+import LabelModal from './LabelModal';
 
 class ProductPageBis extends React.Component {
   constructor(props) {
@@ -117,9 +118,14 @@ class ProductPageBis extends React.Component {
                       }}
                     >
                       {item.labels_at.slice(0, 5).map((label, index) => (
-                        <Image
+                        // <Image
+                        //   key={index}
+                        //   source={{ uri: label }}
+                        //   style={{ height: 40, width: 40, marginRight: 10 }}
+                        // />
+                        <LabelModal
                           key={index}
-                          source={{ uri: label }}
+                          uri={label}
                           style={{ height: 40, width: 40, marginRight: 10 }}
                         />
                       ))}
@@ -196,9 +202,9 @@ class ProductPageBis extends React.Component {
               }}
             >
               {item.labels_at.slice(0, 5).map((label, index) => (
-                <Image
+                <LabelModal
                   key={index}
-                  source={{ uri: label }}
+                  uri={label}
                   style={{ height: 30, width: 30, marginRight: 10 }}
                 />
               ))}

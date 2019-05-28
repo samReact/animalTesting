@@ -44,7 +44,7 @@ const Scanner = ({ scan, dataItem, resetData, scanned, resetScan }) => (
             }}
           >
             <H2 style={{ color: '#fff' }}>Scannez le code-barre</H2>
-            <H2 style={{ color: '#fff' }}>d&39;un produit cosmétique</H2>
+            <H2 style={{ color: '#fff' }}>d&#39;un produit cosmétique</H2>
           </View>
         </View>
         <BarCodeScanner

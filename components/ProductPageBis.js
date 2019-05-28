@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  Modal,
-  Alert,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { Image, Modal, TouchableOpacity, ScrollView } from 'react-native';
 import { Text, View, Content, Icon, Container } from 'native-base';
 import PropTypes from 'prop-types';
 import Logo from '../assets/Logo_Animal_Testing.png';
@@ -174,6 +168,7 @@ class ProductPageBis extends React.Component {
           <ImageModal uri={item.image_url} />
           <View
             style={{
+              flex: 1,
               paddingLeft: 10,
               justifyContent: 'space-between',
             }}

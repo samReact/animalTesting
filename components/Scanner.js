@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { View, Button, Text, H2 } from 'native-base';
 import { BarCodeScanner } from 'expo';
 import { StyleSheet, Image } from 'react-native';
@@ -12,7 +12,7 @@ const Scanner = ({ scan, dataItem, resetData, scanned, resetScan }) => (
     {dataItem ? (
       <ProductPage dataItem={dataItem} resetData={() => resetData()} />
     ) : (
-      <Fragment>
+      <View style={{ flex: 1 }}>
         <View
           style={{
             zIndex: 100,
@@ -52,7 +52,7 @@ const Scanner = ({ scan, dataItem, resetData, scanned, resetScan }) => (
           onBarCodeScanned={scanned ? undefined : scan}
           style={StyleSheet.absoluteFillObject}
         />
-      </Fragment>
+      </View>
     )}
   </View>
 );

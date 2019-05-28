@@ -4,14 +4,12 @@ import {
   Modal,
   TouchableOpacity,
   Image,
-  Text,
-  View,
   WebView,
   Dimensions,
 } from 'react-native';
+import { View, Icon, Text, Container, Content } from 'native-base';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
-import { Content } from 'native-base';
 
 const { height, width } = Dimensions.get('window');
 
@@ -42,14 +40,46 @@ class ReportingModal extends Component {
             this.setModalVisible(false);
           }}
         >
-          <HeaderComponent />
-          <WebView
-            source={{ uri: url }}
-            style={{ width, height }}
-            javaScriptEnabled
-            scrollEnabled="false"
-          />
-          <FooterComponent />
+          <Container>
+            <HeaderComponent />
+            <TouchableOpacity
+              iconLeft
+              transparent
+              onPress={() => this.setModalVisible(false)}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Icon
+                  name="chevron-left"
+                  style={{ color: '#000', fontSize: 45 }}
+                  type="MaterialCommunityIcons"
+                />
+                <View style={{ paddingLeft: 10 }}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: '#66C3AE',
+                      fontSize: 18,
+                    }}
+                  >
+                    RETOUR
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <Content
+              contentContainerStyle={{
+                flex: 1,
+              }}
+            >
+              <WebView
+                source={{ uri: url }}
+                style={{ marginTop: 100 }}
+                scrollEnabled="false"
+                javaScriptEnabled
+              />
+            </Content>
+            <FooterComponent />
+          </Container>
         </Modal>
         <Image
           source={{ uri: icon }}

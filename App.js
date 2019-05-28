@@ -3,6 +3,7 @@ import { StyleSheet, View, Alert } from 'react-native';
 import { Permissions, Font } from 'expo';
 import { NativeRouter } from 'react-router-native';
 import { StyleProvider } from 'native-base';
+import axios from 'axios';
 import Home from './components/Home';
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
@@ -29,6 +30,13 @@ export default class App extends React.Component {
       Roboto,
       Roboto_medium: RobotoMedium,
     });
+    await this.askPermissions();
+    axios
+      .get('https://api.myjson.com/bins/7qhjj')
+      .then(res => res.data)
+      .then(res => {
+        global.config = res;
+      });
     this.askPermissions();
   }
 

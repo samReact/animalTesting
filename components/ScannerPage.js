@@ -19,6 +19,8 @@ export default class ScannerPage extends React.Component {
   }
 
   handleBarCodeScanned = async ({ data }) => {
+    const timeout = global.config.config.timeout * 1000;
+    const { url } = global.config.config;
     const { scanned, loading } = this.state;
     const { manifest } = Constants;
     await this.setState({ loading: true });
@@ -27,10 +29,10 @@ export default class ScannerPage extends React.Component {
       if (!scanned && loading) {
         source.cancel();
       }
-    }, 10000);
+    }, timeout || 10000);
     axios({
       method: 'GET',
-      url: `https://animaltesting.fr/api/v1/product/${data}`,
+      url: `${url}${data}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,

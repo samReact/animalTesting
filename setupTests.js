@@ -6,3 +6,4 @@ Enzyme.configure({ adapter: new Adapter() });
 
 // Mocking expo module
 jest.mock('expo');
+jest.mock('axios');

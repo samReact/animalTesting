@@ -45,6 +45,7 @@ class AllProductsPage extends React.Component {
   }
 
   getProducts = async () => {
+    const timeout = global.config.config.timeout * 1000;
     const { links } = this.props;
     const { loading } = this.state;
     const { manifest } = Constants;
@@ -53,7 +54,7 @@ class AllProductsPage extends React.Component {
       if (loading) {
         source.cancel();
       }
-    }, 10000);
+    }, timeout || 10000);
     await axios({
       method: 'GET',
       url: `https://animaltesting.fr/${links}`,

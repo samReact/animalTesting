@@ -12,47 +12,31 @@ const Scanner = ({ scan, dataItem, resetData, scanned, resetScan }) => (
     {dataItem ? (
       <ProductPage dataItem={dataItem} resetData={() => resetData()} />
     ) : (
-      <View style={{ flex: 1 }}>
+      <BarCodeScanner
+        barCodeTypes={['ean13', 'ean8', 'code128']}
+        onBarCodeScanned={scanned ? undefined : scan}
+        style={StyleSheet.absoluteFillObject}
+      >
         <View
           style={{
-            zIndex: 100,
-            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            alignItems: 'center',
           }}
         >
-          <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-          >
-            {/* <View
-              style={{
-                width: '80%',
-                height: '50%',
-                borderColor: 'green',
-                borderWidth: 5,
-              }}
-            /> */}
-            <Image source={barcode} />
-          </View>
-          {scanned && (
-            <Button onPress={() => resetScan()} style={{ alignSelf: 'center' }}>
-              <Text>Nouveau Scan</Text>
-            </Button>
-          )}
-          <View
-            style={{
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              alignItems: 'center',
-            }}
-          >
-            <H2 style={{ color: '#fff' }}>Scannez le code-barre</H2>
-            <H2 style={{ color: '#fff' }}>d&#39;un produit cosmétique</H2>
-          </View>
+          <H2 style={{ color: '#fff' }}>Scannez le code-barre</H2>
+          <H2 style={{ color: '#fff' }}>d&#39;un produit cosmétique</H2>
         </View>
-        <BarCodeScanner
-          barCodeTypes={['ean13', 'ean8', 'code128']}
-          onBarCodeScanned={scanned ? undefined : scan}
-          style={StyleSheet.absoluteFillObject}
-        />
-      </View>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Image source={barcode} />
+        </View>
+        {scanned && (
+          <Button onPress={() => resetScan()} style={{ alignSelf: 'center' }}>
+            <Text>Nouveau Scan</Text>
+          </Button>
+        )}
+      </BarCodeScanner>
     )}
   </View>
 );

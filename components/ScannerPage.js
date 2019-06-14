@@ -14,7 +14,6 @@ export default class ScannerPage extends React.Component {
     this.state = {
       product: {},
       loading: false,
-      scanned: false,
     };
   }
 
@@ -32,7 +31,7 @@ export default class ScannerPage extends React.Component {
     }, timeout || 10000);
     axios({
       method: 'GET',
-      url: `${url}${data}`,
+      url: `${url}/api/v1/product/${data}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,
@@ -41,14 +40,14 @@ export default class ScannerPage extends React.Component {
       cancelToken: source.token,
     })
       .then(res => {
-        this.setState({ loading: false, product: res.data, scanned: true });
+        this.setState({ loading: false, product: res.data });
       })
       .catch(error => {
         if (axios.isCancel()) {
           return Alert.alert('Erreur', 'Erreur technique', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false, scanned: true }),
+              onPress: () => this.setState({ loading: false }),
             },
           ]);
         }
@@ -56,7 +55,7 @@ export default class ScannerPage extends React.Component {
           return Alert.alert('Erreur', 'Accès interdit', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false, scanned: true }),
+              onPress: () => this.setState({ loading: false }),
             },
           ]);
         }
@@ -64,7 +63,7 @@ export default class ScannerPage extends React.Component {
           return Alert.alert('Erreur', 'Aucun produit trouvé', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false, scanned: true }),
+              onPress: () => this.setState({ loading: false }),
             },
           ]);
         }
@@ -72,7 +71,7 @@ export default class ScannerPage extends React.Component {
           return Alert.alert('Erreur', 'Erreur du champs Accept', [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false, scanned: true }),
+              onPress: () => this.setState({ loading: false }),
             },
           ]);
         }
@@ -83,7 +82,7 @@ export default class ScannerPage extends React.Component {
             [
               {
                 text: 'OK',
-                onPress: () => this.setState({ loading: false, scanned: true }),
+                onPress: () => this.setState({ loading: false }),
               },
             ]
           );
@@ -95,7 +94,7 @@ export default class ScannerPage extends React.Component {
             [
               {
                 text: 'OK',
-                onPress: () => this.setState({ loading: false, scanned: true }),
+                onPress: () => this.setState({ loading: false }),
               },
             ]
           );
@@ -106,7 +105,7 @@ export default class ScannerPage extends React.Component {
           [
             {
               text: 'OK',
-              onPress: () => this.setState({ loading: false, scanned: true }),
+              onPress: () => this.setState({ loading: false }),
             },
           ]
         );
@@ -114,7 +113,7 @@ export default class ScannerPage extends React.Component {
   };
 
   render() {
-    const { loading, product, scanned } = this.state;
+    const { loading, product } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
@@ -129,8 +128,6 @@ export default class ScannerPage extends React.Component {
             dataItem={product.data}
             scan={this.handleBarCodeScanned}
             resetData={() => this.setState({ product: {} })}
-            scanned={scanned}
-            resetScan={() => this.setState({ scanned: false })}
           />
         )}
       </View>

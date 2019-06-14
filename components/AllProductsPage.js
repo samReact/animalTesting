@@ -49,6 +49,7 @@ class AllProductsPage extends React.Component {
     const { links } = this.props;
     const { loading } = this.state;
     const { manifest } = Constants;
+    const { url } = global.config.config;
     this.setState({ loading: true });
     setTimeout(() => {
       if (loading) {
@@ -57,7 +58,7 @@ class AllProductsPage extends React.Component {
     }, timeout || 10000);
     await axios({
       method: 'GET',
-      url: `https://animaltesting.fr/${links}`,
+      url: `${url}/${links}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,

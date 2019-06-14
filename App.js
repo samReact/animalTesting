@@ -32,7 +32,7 @@ export default class App extends React.Component {
     });
     await this.askPermissions();
     axios
-      .get('https://api.myjson.com/bins/7qhjj')
+      .get('https://api.myjson.com/bins/1bk1q9')
       .then(res => res.data)
       .then(res => {
         global.config = res;

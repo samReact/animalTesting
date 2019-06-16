@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import axios from 'axios';
 import { Spinner } from 'native-base';
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
+import * as Crypto from 'expo-crypto';
+import base64 from 'react-native-base64';
 import Scanner from './Scanner';
+import SECRET_KEY from '../constant/env';
 
 const { CancelToken } = axios;
 const source = CancelToken.source();
@@ -14,18 +17,30 @@ export default class ScannerPage extends React.Component {
     this.state = {
       product: {},
       loading: false,
+      signature: '',
     };
+  }
+
+  async componentDidMount() {
+    const digest = await Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      SECRET_KEY
+    );
+    const signature = base64.encode(digest);
+    this.setState({
+      signature,
+    });
   }
 
   handleBarCodeScanned = async ({ data }) => {
     const timeout = global.config.config.timeout * 1000;
     const { url } = global.config.config;
-    const { scanned, loading } = this.state;
+    const { loading, signature } = this.state;
     const { manifest } = Constants;
     await this.setState({ loading: true });
 
     setTimeout(() => {
-      if (!scanned && loading) {
+      if (loading) {
         source.cancel();
       }
     }, timeout || 10000);
@@ -36,6 +51,7 @@ export default class ScannerPage extends React.Component {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,
         'Content-Type': 'application/json; charset=utf-8',
+        Authorization: `Digest ${signature}`,
       },
       cancelToken: source.token,
     })

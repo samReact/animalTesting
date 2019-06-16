@@ -12,7 +12,11 @@ import HeaderComponent from './HeaderComponent';
 const Home = () => (
   <Container>
     <HeaderComponent />
-    <Content contentContainerStyle={{ flex: 1, height: '100%' }}>
+    <Content
+      contentContainerStyle={{
+        flex: 1,
+      }}
+    >
       <Route exact path={routes.SCANNER} component={ScannerPage} />
       <Route path={routes.HOME} component={HomePage} />
       <Route path={routes.FOLLOW_US} component={FollowUs} />

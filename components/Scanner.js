@@ -1,22 +1,23 @@
 import React from 'react';
 import { View, Text } from 'native-base';
-import { BarCodeScanner } from 'expo';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import { StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ProductPage from './ProductPage';
 
-const barcode = require('../assets/barcode.png');
+const barcode = require('../assets/barcode_alpha70_v2.png');
 
 const Scanner = ({ scan, dataItem, resetData }) => (
   <View style={{ flex: 1 }}>
     {dataItem ? (
       <ProductPage dataItem={dataItem} resetData={() => resetData()} />
     ) : (
-      <BarCodeScanner
-        barCodeTypes={['ean13', 'ean8', 'code128']}
-        onBarCodeScanned={scan}
-        style={StyleSheet.absoluteFillObject}
-      >
+      <View style={{ flex: 1, backgroundColor: '#000' }}>
+        <BarCodeScanner
+          barCodeTypes={['ean13', 'ean8', 'code128']}
+          onBarCodeScanned={scan}
+          style={StyleSheet.absoluteFillObject}
+        />
         <View
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
@@ -35,7 +36,7 @@ const Scanner = ({ scan, dataItem, resetData }) => (
             d&#39;un produit cosmétique
           </Text>
         </View>
-      </BarCodeScanner>
+      </View>
     )}
   </View>
 );

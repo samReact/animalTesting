@@ -11,6 +11,8 @@ import { View, Icon, Text, Container, Content } from 'native-base';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 
+const clickLogo = require('../assets/click_here.png');
+
 const { height, width } = Dimensions.get('window');
 
 class ReportingModal extends Component {
@@ -24,7 +26,7 @@ class ReportingModal extends Component {
 
   render() {
     const { modalVisible } = this.state;
-    const { icon, url } = this.props;
+    const { icon, url, link } = this.props;
 
     return (
       <TouchableOpacity
@@ -81,10 +83,14 @@ class ReportingModal extends Component {
             <FooterComponent />
           </Container>
         </Modal>
-        <Image
-          source={{ uri: icon }}
-          style={{ height: 40, width: 40, marginRight: 20 }}
-        />
+        {link ? (
+          <Image source={clickLogo} />
+        ) : (
+          <Image
+            source={{ uri: icon }}
+            style={{ height: 40, width: 40, marginRight: 20 }}
+          />
+        )}
       </TouchableOpacity>
     );
   }

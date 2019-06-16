@@ -118,7 +118,7 @@ const ProductPage = props => {
             <AllProductsPage categories={categories} links={links_url} />
           </View>
         ) : null}
-        <View style={{ padding: 10 }}>
+        <View style={{ flex: 1, padding: 10 }}>
           <View style={{ flexDirection: 'row' }}>
             <Image style={{ width: 40, height: 40 }} source={Logo} />
             <Text
@@ -132,6 +132,19 @@ const ProductPage = props => {
             </Text>
           </View>
           <Text style={{ textAlign: 'justify' }}>{comment_at}</Text>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <Text style={{ fontStyle: 'italic' }}>Si vous êtes une marque</Text>
+            <ReportingModal icon={alert_image_url} url={alert_url} link />
+            <Text style={{ fontStyle: 'italic' }}>pour</Text>
+            <Text style={{ fontStyle: 'italic' }}>signaler un changement</Text>
+          </View>
         </View>
       </ScrollView>
     </Content>

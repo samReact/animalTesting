@@ -118,11 +118,6 @@ class ProductPageBis extends React.Component {
                       }}
                     >
                       {item.labels_at.slice(0, 5).map((label, index) => (
-                        // <Image
-                        //   key={index}
-                        //   source={{ uri: label }}
-                        //   style={{ height: 40, width: 40, marginRight: 10 }}
-                        // />
                         <LabelModal
                           key={index}
                           uri={label}
@@ -137,7 +132,10 @@ class ProductPageBis extends React.Component {
                       alignItems: 'flex-end',
                     }}
                   >
-                    <ReportingModal icon={item.alert_image_url} />
+                    <ReportingModal
+                      icon={item.alert_image_url}
+                      url={item.alert_url}
+                    />
                   </View>
                 </View>
                 <View>
@@ -154,6 +152,26 @@ class ProductPageBis extends React.Component {
                     </Text>
                   </View>
                   <Text>{item.comment_at}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <Text style={{ fontStyle: 'italic' }}>
+                      Si vous êtes une marque
+                    </Text>
+                    <ReportingModal
+                      icon={item.alert_image_url}
+                      url={item.alert_url}
+                      link
+                    />
+                    <Text style={{ fontStyle: 'italic' }}>pour</Text>
+                    <Text style={{ fontStyle: 'italic' }}>
+                      signaler un changement
+                    </Text>
+                  </View>
                 </View>
               </ScrollView>
             </Content>

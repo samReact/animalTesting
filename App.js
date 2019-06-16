@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
-import { Permissions, Font } from 'expo';
+import * as Font from 'expo-font';
+import * as Permissions from 'expo-permissions';
 import { NativeRouter } from 'react-router-native';
 import { StyleProvider } from 'native-base';
 import axios from 'axios';

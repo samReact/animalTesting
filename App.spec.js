@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { View } from 'react-native';
 import { StyleProvider } from 'native-base';
 import { NativeRouter } from 'react-router-native';
-import { Permissions } from 'expo';
+import * as Permissions from 'expo-permissions';
 import App from './App';
 import Home from './components/Home';
 

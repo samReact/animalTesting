@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasCameraPermission: false };
+    this.state = { hasCameraPermission: false, ready: false };
   }
 
   // loading custom fonts
@@ -31,12 +31,12 @@ export default class App extends React.Component {
       Roboto,
       Roboto_medium: RobotoMedium,
     });
-    await this.askPermissions();
-    axios
-      .get('https://api.myjson.com/bins/1bk1q9')
+    await axios
+      .get('https://api.myjson.com/bins/nqhfh')
       .then(res => res.data)
       .then(res => {
         global.config = res;
+        this.setState({ ready: true });
       });
     this.askPermissions();
   }
@@ -52,8 +52,9 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { hasCameraPermission } = this.state;
-    return (
+    const { hasCameraPermission, ready } = this.state;
+
+    return ready ? (
       <StyleProvider style={getTheme(commonColor)}>
         <NativeRouter>
           <View style={styles.container}>
@@ -61,6 +62,6 @@ export default class App extends React.Component {
           </View>
         </NativeRouter>
       </StyleProvider>
-    );
+    ) : null;
   }
 }

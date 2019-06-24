@@ -3,8 +3,8 @@ import { View, Alert } from 'react-native';
 import axios from 'axios';
 import { Spinner } from 'native-base';
 import Constants from 'expo-constants';
-import * as Crypto from 'expo-crypto';
 import base64 from 'react-native-base64';
+import CryptoJS from 'crypto-js';
 import Scanner from './Scanner';
 import SECRET_KEY from '../constant/env';
 
@@ -17,27 +17,18 @@ export default class ScannerPage extends React.Component {
     this.state = {
       product: {},
       loading: false,
-      signature: '',
     };
   }
 
-  async componentDidMount() {
-    const digest = await Crypto.digestStringAsync(
-      Crypto.CryptoDigestAlgorithm.SHA256,
-      SECRET_KEY
-    );
-    const signature = base64.encode(digest);
-    this.setState({
-      signature,
-    });
-  }
-
-  handleBarCodeScanned = async ({ data }) => {
-    const timeout = global.config.config.timeout * 1000;
-    const { url } = global.config.config;
-    const { loading, signature } = this.state;
+  handleBarCodeScanned = ({ data }) => {
+    const timeout = global.config.timeout * 1000;
+    const { url } = global.config;
+    const { loading } = this.state;
     const { manifest } = Constants;
-    await this.setState({ loading: true });
+    const fullUrl = `/api/v1/product/${data}`;
+    const digest = CryptoJS.HmacSHA256(fullUrl, SECRET_KEY).toString();
+    const signature = base64.encode(digest);
+    this.setState({ loading: true });
 
     setTimeout(() => {
       if (loading) {
@@ -51,7 +42,7 @@ export default class ScannerPage extends React.Component {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,
         'Content-Type': 'application/json; charset=utf-8',
-        Authorization: `Digest ${signature}`,
+        Authentication: signature,
       },
       cancelToken: source.token,
     })

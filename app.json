@@ -6,7 +6,10 @@
     "scheme": "animaltesting",
     "sdkVersion": "33.0.0",
     "icon": "./assets/animal-testing-icon_512x512.png",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.6",
     "orientation": "portrait",
     "splash": {
@@ -16,7 +19,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "fr.animaltesting.ios",
       "icon": "./assets/animal-testing-icon_1024x1024.png",

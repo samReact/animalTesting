@@ -20,9 +20,12 @@ import { withRouter } from 'react-router-native';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Constants from 'expo-constants';
+import base64 from 'react-native-base64';
+import CryptoJS from 'crypto-js';
 import ProductPageBis from './ProductPageBis';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+import SECRET_KEY from '../constant/env';
 
 const { CancelToken } = axios;
 const source = CancelToken.source();
@@ -45,11 +48,14 @@ class AllProductsPage extends React.Component {
   }
 
   getProducts = async () => {
-    const timeout = global.config.config.timeout * 1000;
+    const timeout = global.config.timeout * 1000;
     const { links } = this.props;
     const { loading } = this.state;
     const { manifest } = Constants;
-    const { url } = global.config.config;
+    const { url } = global.config;
+    const fullUrl = `${links}`;
+    const digest = CryptoJS.HmacSHA256(fullUrl, SECRET_KEY).toString();
+    const signature = base64.encode(digest);
     this.setState({ loading: true });
     setTimeout(() => {
       if (loading) {
@@ -63,6 +69,7 @@ class AllProductsPage extends React.Component {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,
         'Content-Type': 'application/json; charset=utf-8',
+        Authentication: signature,
       },
       cancelToken: source.token,
     })

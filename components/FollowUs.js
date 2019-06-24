@@ -4,10 +4,6 @@ import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 import Constants from 'expo-constants';
 
-// const { socialId, websiteUrl } = global.config.config;
-// console.log(socialId, websiteUrl);
-// console.log(global.config.config);
-
 class FollowUs extends React.Component {
   constructor(props) {
     super(props);

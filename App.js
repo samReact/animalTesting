@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import * as Font from 'expo-font';
 import * as Permissions from 'expo-permissions';
 import { NativeRouter } from 'react-router-native';
@@ -12,12 +12,6 @@ import commonColor from './native-base-theme/variables/commonColor';
 // Font required with native base theme
 const Roboto = require('native-base/Fonts/Roboto.ttf');
 const RobotoMedium = require('native-base/Fonts/Roboto_medium.ttf');
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default class App extends React.Component {
   constructor(props) {
@@ -32,7 +26,8 @@ export default class App extends React.Component {
       Roboto_medium: RobotoMedium,
     });
     await axios
-      .get('https://api.myjson.com/bins/nqhfh')
+      // .get('https://api.myjson.com/bins/nqhfh')
+      .get('https://animaltesting.fr/api/admin/config.json')
       .then(res => res.data)
       .then(res => {
         global.config = res;
@@ -56,11 +51,7 @@ export default class App extends React.Component {
 
     return ready ? (
       <StyleProvider style={getTheme(commonColor)}>
-        <NativeRouter>
-          <View style={styles.container}>
-            {hasCameraPermission && <Home />}
-          </View>
-        </NativeRouter>
+        <NativeRouter>{hasCameraPermission && <Home />}</NativeRouter>
       </StyleProvider>
     ) : null;
   }

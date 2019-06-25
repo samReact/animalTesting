@@ -19,6 +19,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "fr.animaltesting.ios",
+      "buildNumber": "1.0.7",
       "icon": "./assets/animal-testing-icon_1024x1024.png",
       "supportsTablet": false,
       "infoPlist": {

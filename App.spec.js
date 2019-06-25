@@ -1,29 +1,28 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { View } from 'react-native';
 import { StyleProvider } from 'native-base';
 import { NativeRouter } from 'react-router-native';
-import * as Permissions from 'expo-permissions';
+import { Permissions } from 'expo';
 import App from './App';
 import Home from './components/Home';
 
+const AppWrapper = shallow(<App />);
+
 describe('App', () => {
+  beforeEach(() => {
+    AppWrapper.setState({ ready: true });
+  });
   it('Has a StyleProvider container', () => {
-    const AppWrapper = shallow(<App />);
+    // const AppWrapper = shallow(<App />);
+    // AppWrapper.setState({ ready: true });
     expect(AppWrapper.find(StyleProvider)).toHaveLength(1);
   });
   it('Has a NativeRouter container', () => {
-    const AppWrapper = shallow(<App />);
     expect(AppWrapper.find(NativeRouter)).toHaveLength(1);
   });
-  it('Render a View', () => {
-    const AppWrapper = shallow(<App />);
-    expect(AppWrapper.find(View)).toHaveLength(1);
-  });
-  describe('within View', () => {
+  describe('within StyleProvider', () => {
     describe('before asking permission', () => {
       it('renders no component', () => {
-        const AppWrapper = shallow(<App />);
         expect(AppWrapper.find(Home)).toHaveLength(0);
       });
     });
@@ -33,7 +32,6 @@ describe('App', () => {
           Permissions.askAsync.mockResolvedValue({
             status: 'denied',
           });
-          const AppWrapper = shallow(<App />);
           setImmediate(() => {
             expect(AppWrapper.find(Home)).toHaveLength(0);
             done();
@@ -45,7 +43,7 @@ describe('App', () => {
           Permissions.askAsync.mockResolvedValue({
             status: 'granted',
           });
-          const AppWrapper = shallow(<App />);
+          AppWrapper.setState({ hasCameraPermission: true });
           setImmediate(() => {
             expect(AppWrapper.find(Home)).toHaveLength(1);
             done();

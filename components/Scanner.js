@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'native-base';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { BarCodeScanner } from 'expo';
 import { StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ProductPage from './ProductPage';

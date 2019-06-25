@@ -2,7 +2,7 @@ import React from 'react';
 import { Linking, TouchableOpacity, Platform, Alert } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
-import Constants from 'expo-constants';
+import { Constants } from 'expo';
 
 class FollowUs extends React.Component {
   constructor(props) {

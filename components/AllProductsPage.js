@@ -19,7 +19,7 @@ import {
 import { withRouter } from 'react-router-native';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Constants from 'expo-constants';
+import { Constants } from 'expo';
 import base64 from 'react-native-base64';
 import CryptoJS from 'crypto-js';
 import ProductPageBis from './ProductPageBis';

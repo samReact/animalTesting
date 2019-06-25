@@ -20,7 +20,7 @@
       "\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!native-base|react-router-native|react-native|expo|@expo)"
+      "/node_modules/(?!native-base|react-router-native|@expo|expo)"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.js"
@@ -36,16 +36,11 @@
     "@expo/vector-icons": "^9.0.0",
     "axios": "^0.18.0",
     "crypto-js": "^3.1.9-1",
-    "expo": "^33.0.0",
-    "expo-barcode-scanner": "~5.0.1",
-    "expo-constants": "~5.0.1",
-    "expo-crypto": "^5.0.1",
-    "expo-font": "~5.0.1",
-    "expo-permissions": "~5.0.1",
+    "expo": "^32.0.0",
     "native-base": "^2.10.0",
     "prop-types": "^15.6.2",
-    "react": "16.8.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-base64": "0.0.2",
     "react-router-native": "^4.3.0"
   },
@@ -68,7 +63,8 @@
     "jest-expo": "^32.0.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.16.1",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "schedule": "^0.4.0"
   },
   "private": true
 }

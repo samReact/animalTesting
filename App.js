@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import * as Font from 'expo-font';
-import * as Permissions from 'expo-permissions';
+import { Font, Permissions } from 'expo';
 import { NativeRouter } from 'react-router-native';
 import { StyleProvider } from 'native-base';
 import axios from 'axios';
@@ -26,7 +25,6 @@ export default class App extends React.Component {
       Roboto_medium: RobotoMedium,
     });
     await axios
-      // .get('https://api.myjson.com/bins/nqhfh')
       .get('https://animaltesting.fr/api/admin/config.json')
       .then(res => res.data)
       .then(res => {

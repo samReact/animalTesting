@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import axios from 'axios';
 import { Spinner } from 'native-base';
-import Constants from 'expo-constants';
+import { Constants } from 'expo';
 import base64 from 'react-native-base64';
 import CryptoJS from 'crypto-js';
 import Scanner from './Scanner';

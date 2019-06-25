@@ -5,6 +5,6 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 // Mocking expo module
-jest.mock('expo');
+
 jest.mock('axios');
-jest.mock('expo-permissions');
+jest.mock('expo');

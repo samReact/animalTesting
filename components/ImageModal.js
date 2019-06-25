@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, TouchableOpacity, Alert, Image } from 'react-native';
+import { Modal, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 class ImageModal extends Component {

@@ -20,7 +20,7 @@
       "\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!native-base|react-router-native|@expo|expo)"
+      "/node_modules/(?!native-base|react-native|react-router-native|@expo|expo)"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.js"

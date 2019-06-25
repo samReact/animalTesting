@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Icon, Text, Content, View } from 'native-base';
@@ -135,15 +136,16 @@ const ProductPage = props => {
 
           <View
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              flexWrap: 'wrap',
+              marginTop: 10,
+              // flexWrap: 'wrap',
+              justifyContent: 'center',
             }}
           >
             <Text style={{ fontStyle: 'italic' }}>Si vous êtes une marque</Text>
             <ReportingModal icon={alert_image_url} url={alert_url} link />
-            <Text style={{ fontStyle: 'italic' }}>pour</Text>
-            <Text style={{ fontStyle: 'italic' }}>signaler un changement</Text>
+            <Text style={{ fontStyle: 'italic' }}>
+              pour signaler un changement
+            </Text>
           </View>
         </View>
       </ScrollView>

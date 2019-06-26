@@ -5,7 +5,7 @@ import { StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ProductPage from './ProductPage';
 
-const barcode = require('../assets/barcode_alpha70_v2.png');
+const barcode = require('../assets/barcode_alpha170_v3.png');
 
 const Scanner = ({ scan, dataItem, resetData }) => (
   <View style={{ flex: 1 }}>

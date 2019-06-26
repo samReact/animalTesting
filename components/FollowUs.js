@@ -3,6 +3,7 @@ import { Linking, TouchableOpacity, Platform, Alert } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Text, View, Icon } from 'native-base';
 import { Constants } from 'expo';
+import { WEBSITE_URL, SOCIAL_ID, FACEBOOK_ID } from '../constant/env';
 
 class FollowUs extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class FollowUs extends React.Component {
             style={{ flexDirection: 'row', justifyContent: 'space-around' }}
           >
             <TouchableOpacity
-              onPress={() => Linking.openURL(websiteUrl)}
+              onPress={() => Linking.openURL(websiteUrl || WEBSITE_URL)}
               style={{
                 backgroundColor: '#66C3AE',
                 borderRadius: 50,
@@ -91,8 +92,10 @@ class FollowUs extends React.Component {
             <TouchableOpacity
               onPress={() => {
                 if (Platform.OS === 'android') {
-                  const FANPAGE_URL_FOR_APP = `twitter://app/${socialId}/`;
-                  const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${socialId}/`;
+                  const FANPAGE_URL_FOR_APP = `twitter://app/${socialId ||
+                    SOCIAL_ID}/`;
+                  const FANPAGE_URL_FOR_BROWSER = `https://twitter.com/${socialId ||
+                    SOCIAL_ID}/`;
                   Linking.canOpenURL(FANPAGE_URL_FOR_APP)
                     .then(supported => {
                       if (!supported) {
@@ -130,8 +133,10 @@ class FollowUs extends React.Component {
           >
             <TouchableOpacity
               onPress={() => {
-                const FANPAGE_URL_FOR_APP = `instagram://app/${socialId}/`;
-                const FANPAGE_URL_FOR_BROWSER = `https://www.instagram.com/${socialId}/`;
+                const FANPAGE_URL_FOR_APP = `instagram://app/${socialId ||
+                  SOCIAL_ID}/`;
+                const FANPAGE_URL_FOR_BROWSER = `https://www.instagram.com/${socialId ||
+                  SOCIAL_ID}/`;
                 Linking.canOpenURL(FANPAGE_URL_FOR_APP)
                   .then(supported => {
                     if (!supported) {
@@ -163,8 +168,10 @@ class FollowUs extends React.Component {
 
             <TouchableOpacity
               onPress={() => {
-                const FANPAGE_URL_FOR_APP = `fb://page/${facebookId}`;
-                const FANPAGE_URL_FOR_BROWSER = `https://fb.com/${facebookId}`;
+                const FANPAGE_URL_FOR_APP = `fb://page/${facebookId ||
+                  FACEBOOK_ID}`;
+                const FANPAGE_URL_FOR_BROWSER = `https://fb.com/${facebookId ||
+                  FACEBOOK_ID}`;
                 Linking.canOpenURL(FANPAGE_URL_FOR_APP)
                   .then(supported => {
                     if (!supported) {

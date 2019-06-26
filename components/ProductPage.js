@@ -139,10 +139,15 @@ const ProductPage = props => {
               marginTop: 10,
               // flexWrap: 'wrap',
               justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <Text style={{ fontStyle: 'italic' }}>Si vous êtes une marque</Text>
-            <ReportingModal icon={alert_image_url} url={alert_url} link />
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{ fontStyle: 'italic' }}>
+                Si vous êtes une marque
+              </Text>
+              <ReportingModal icon={alert_image_url} url={alert_url} link />
+            </View>
             <Text style={{ fontStyle: 'italic' }}>
               pour signaler un changement
             </Text>

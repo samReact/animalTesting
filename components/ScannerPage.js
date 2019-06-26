@@ -6,7 +6,7 @@ import { Constants } from 'expo';
 import base64 from 'react-native-base64';
 import CryptoJS from 'crypto-js';
 import Scanner from './Scanner';
-import SECRET_KEY from '../constant/env';
+import { SECRET_KEY, BASE_URL, TIMEOUT } from '../constant/env';
 
 const { CancelToken } = axios;
 const source = CancelToken.source();
@@ -34,10 +34,10 @@ export default class ScannerPage extends React.Component {
       if (loading) {
         source.cancel();
       }
-    }, timeout || 10000);
+    }, timeout || TIMEOUT);
     axios({
       method: 'GET',
-      url: `${url}/api/v1/product/${data}`,
+      url: `${url || BASE_URL}${fullUrl}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,

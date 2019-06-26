@@ -1,48 +1,32 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
 import { View, Text } from 'native-base';
+import { HOME_MESSAGE, HOME_BACKGROUND } from '../constant/env';
 
-const womenPic = require('../assets/image_accueil.jpg');
-
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      homeMessage: 'Bonjour !',
-    };
-  }
-
-  async componentDidMount() {
-    const { homeMessage, homeBackground } = global.config;
-    this.setState({
-      homeMessage,
-      homeBackground,
-    });
-  }
-
-  render() {
-    const { homeMessage, homeBackground } = this.state;
-    return (
-      <ImageBackground
-        resizeMode="cover"
-        style={{ width: '100%', height: '100%' }}
-        source={{ uri: homeBackground } || womenPic}
-      >
-        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-          <View
-            style={{
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: '8%',
-            }}
-          >
-            <Text style={{ color: '#fff', fontSize: 18 }}>{homeMessage}</Text>
-          </View>
+const HomePage = () => {
+  const { homeMessage, homeBackground } = global.config;
+  return (
+    <ImageBackground
+      resizeMode="cover"
+      style={{ width: '100%', height: '100%' }}
+      source={{ uri: homeBackground } || HOME_BACKGROUND}
+    >
+      <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+        <View
+          style={{
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '8%',
+          }}
+        >
+          <Text style={{ color: '#fff', fontSize: 18 }}>
+            {homeMessage || HOME_MESSAGE}
+          </Text>
         </View>
-      </ImageBackground>
-    );
-  }
-}
+      </View>
+    </ImageBackground>
+  );
+};
 
 export default HomePage;

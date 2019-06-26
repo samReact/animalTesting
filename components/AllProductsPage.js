@@ -25,7 +25,7 @@ import CryptoJS from 'crypto-js';
 import ProductPageBis from './ProductPageBis';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
-import SECRET_KEY from '../constant/env';
+import { SECRET_KEY, BASE_URL, TIMEOUT } from '../constant/env';
 
 const { CancelToken } = axios;
 const source = CancelToken.source();
@@ -61,10 +61,10 @@ class AllProductsPage extends React.Component {
       if (loading) {
         source.cancel();
       }
-    }, timeout || 10000);
+    }, timeout || TIMEOUT);
     await axios({
       method: 'GET',
-      url: `${url}/${links}`,
+      url: `${url || BASE_URL}/${links}`,
       headers: {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,

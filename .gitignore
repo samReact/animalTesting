@@ -1,7 +1,7 @@
 node_modules/**/*
 .idea
 .expo/*
-npm-debug.*
+npm-debug.
 *.jks
 *.p12
 *.key

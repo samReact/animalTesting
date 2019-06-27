@@ -7,7 +7,6 @@ import axios from 'axios';
 import Home from './components/Home';
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
-
 // Font required with native base theme
 const Roboto = require('native-base/Fonts/Roboto.ttf');
 const RobotoMedium = require('native-base/Fonts/Roboto_medium.ttf');

@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Modal,
-  TouchableOpacity,
-  Image,
-  WebView,
-  Dimensions,
-} from 'react-native';
+import { Modal, TouchableOpacity, Image, WebView } from 'react-native';
 import { View, Icon, Text, Container, Content } from 'native-base';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 
 const clickLogo = require('../assets/click_here.png');
-
-const { height, width } = Dimensions.get('window');
 
 class ReportingModal extends Component {
   state = {
@@ -98,6 +90,11 @@ class ReportingModal extends Component {
 
 ReportingModal.propTypes = {
   icon: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  link: PropTypes.bool,
+};
+ReportingModal.defaultProps = {
+  link: false,
 };
 
 export default ReportingModal;

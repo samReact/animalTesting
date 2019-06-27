@@ -4,12 +4,13 @@ import { View, Text } from 'native-base';
 import { HOME_MESSAGE, HOME_BACKGROUND } from '../constant/env';
 
 const HomePage = () => {
-  const { homeMessage, homeBackground } = global.config;
+  const { homeMessage, homeBackground2 } = global.config;
+
   return (
     <ImageBackground
       resizeMode="cover"
       style={{ width: '100%', height: '100%' }}
-      source={{ uri: homeBackground } || HOME_BACKGROUND}
+      source={{ uri: homeBackground2 } || HOME_BACKGROUND}
     >
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
         <View

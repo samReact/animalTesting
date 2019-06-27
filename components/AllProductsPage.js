@@ -53,7 +53,7 @@ class AllProductsPage extends React.Component {
     const { loading } = this.state;
     const { manifest } = Constants;
     const { url } = global.config;
-    const fullUrl = `${links}`;
+    const fullUrl = `${url || BASE_URL}/${links}`;
     const digest = CryptoJS.HmacSHA256(fullUrl, SECRET_KEY).toString();
     const signature = base64.encode(digest);
     this.setState({ loading: true });
@@ -64,7 +64,7 @@ class AllProductsPage extends React.Component {
     }, timeout || TIMEOUT);
     await axios({
       method: 'GET',
-      url: `${url || BASE_URL}/${links}`,
+      url: fullUrl,
       headers: {
         Accept: 'application/json; charset=utf-8',
         'User-Agent': `Appli Animal Testing/${manifest.version}`,

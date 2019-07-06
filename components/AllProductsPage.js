@@ -54,7 +54,8 @@ class AllProductsPage extends React.Component {
     const { manifest } = Constants;
     const { url } = global.config;
     const fullUrl = `${url || BASE_URL}/${links}`;
-    const digest = CryptoJS.HmacSHA256(fullUrl, SECRET_KEY).toString();
+    const urlKey = `/${links}`;
+    const digest = CryptoJS.HmacSHA256(urlKey, SECRET_KEY).toString();
     const signature = base64.encode(digest);
     this.setState({ loading: true });
     setTimeout(() => {

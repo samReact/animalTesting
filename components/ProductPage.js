@@ -137,7 +137,6 @@ const ProductPage = props => {
           <View
             style={{
               marginTop: 10,
-              // flexWrap: 'wrap',
               justifyContent: 'center',
               alignItems: 'center',
             }}

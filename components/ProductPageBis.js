@@ -138,38 +138,45 @@ class ProductPageBis extends React.Component {
                     />
                   </View>
                 </View>
-                <View>
+                <View style={{ flex: 1 }}>
                   <View style={{ flexDirection: 'row' }}>
                     <Image style={{ width: 40, height: 40 }} source={Logo} />
                     <Text
                       style={{
                         fontWeight: 'bold',
                         fontSize: 18,
-                        paddingLeft: 10,
                       }}
                     >
                       COMMENTAIRE SUR LA MARQUE
                     </Text>
                   </View>
-                  <Text>{item.comment_at}</Text>
+                  <Text style={{ textAlign: 'justify' }}>
+                    {item.comment_at}
+                  </Text>
                   <View
                     style={{
-                      flexDirection: 'row',
+                      marginTop: 10,
+                      justifyContent: 'center',
                       alignItems: 'center',
-                      flexWrap: 'wrap',
                     }}
                   >
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Text style={{ fontStyle: 'italic' }}>
+                        Si vous êtes une marque
+                      </Text>
+                      <ReportingModal
+                        icon={item.alert_image_url}
+                        url={item.alert_url}
+                        link
+                      />
+                    </View>
                     <Text style={{ fontStyle: 'italic' }}>
-                      Si vous êtes une marque
-                    </Text>
-                    <ReportingModal
-                      icon={item.alert_image_url}
-                      url={item.alert_url}
-                      link
-                    />
-                    <Text style={{ fontStyle: 'italic' }}>pour</Text>
-                    <Text style={{ fontStyle: 'italic' }}>
-                      signaler un changement
+                      pour signaler un changement
                     </Text>
                   </View>
                 </View>

@@ -13,8 +13,6 @@ describe('App', () => {
     AppWrapper.setState({ ready: true });
   });
   it('Has a StyleProvider container', () => {
-    // const AppWrapper = shallow(<App />);
-    // AppWrapper.setState({ ready: true });
     expect(AppWrapper.find(StyleProvider)).toHaveLength(1);
   });
   it('Has a NativeRouter container', () => {
